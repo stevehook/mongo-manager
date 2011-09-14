@@ -4,7 +4,7 @@ require 'haml'
 
 class App < Sinatra::Base
   set :static, true
-  # set :public, 'public'
+  set :public, 'public'
 
   helpers do
     def partial(page, options={})
@@ -13,7 +13,7 @@ class App < Sinatra::Base
   end
 
   get '/' do
-    'hello'
+    haml :index
   end
 
   run! if /app.rb$/ =~ $0
