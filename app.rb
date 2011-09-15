@@ -3,6 +3,12 @@ require 'sinatra/reloader'
 require 'haml'
 require 'coffee-script'
 
+module Partials
+  def partial( page, variables={} )
+    haml page.to_sym, {layout:false}, variables
+  end
+end
+
 class CoffeeHandler < Sinatra::Base
   set :views, 'public/coffee'
 
@@ -14,6 +20,7 @@ end
 
 class App < Sinatra::Base
   use CoffeeHandler
+  helpers Partials
 
   set :static, true
   set :public, 'public'
