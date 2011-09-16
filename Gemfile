@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 gem "nokogiri"
+gem "mongo"
 gem "rack", "~> 1.2"
 gem "active_support", ">= 3.0"
 gem "haml", ">= 3.1"
