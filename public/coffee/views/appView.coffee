@@ -2,7 +2,7 @@ class window.AppView extends Backbone.View
   el: $('#databaseList')
 
   initialize: ->
-    DatabaseCollection.fetch()
+    Databases.fetch()
 
   # TODO: bind the events
   #

@@ -13,6 +13,7 @@
       DatabaseCollection.__super__.constructor.apply(this, arguments);
     }
     DatabaseCollection.prototype.model = Database;
+    DatabaseCollection.prototype.url = 'databases';
     return DatabaseCollection;
   })();
   window.Databases = new DatabaseCollection;

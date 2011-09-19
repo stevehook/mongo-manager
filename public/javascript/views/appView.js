@@ -14,7 +14,7 @@
     }
     AppView.prototype.el = $('#databaseList');
     AppView.prototype.initialize = function() {
-      return DatabaseCollection.fetch();
+      return Databases.fetch();
     };
     return AppView;
   })();
