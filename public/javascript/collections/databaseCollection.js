@@ -14,7 +14,12 @@
     }
     DatabaseCollection.prototype.model = Database;
     DatabaseCollection.prototype.url = 'databases';
+    DatabaseCollection.prototype.bind = {
+      add: function() {
+        return console.log('Something got added to the collection');
+      }
+    };
     return DatabaseCollection;
   })();
-  window.Databases = new DatabaseCollection;
+  window.databases = new DatabaseCollection;
 }).call(this);

@@ -1,10 +1,20 @@
 class window.AppView extends Backbone.View
   el: $('#databaseList')
 
-  initialize: ->
-    Databases.fetch()
+  databaseTemplate: _.template($('#databaseItemTemplate').html())
 
-  # TODO: bind the events
-  #
+  initialize: ->
+    _.extend(databases, Backbone.Events)
+    databases.bind 'add', this.addDatabase
+    databases.bind 'reset', this.refreshDatabases
+    databases.fetch()
+
+  addDatabase: (database) =>
+    id = database.elementID()
+    html = this.databaseTemplate { id: id, name: database.get('name'), url: "databases/#{id}" }
+    $("#databaseList").append(html)
+
+  refreshDatabases: =>
+    databases.each(this.addDatabase)
 
 window.App = new AppView

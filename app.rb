@@ -38,7 +38,7 @@ class App < Sinatra::Base
 
   get '/databases' do
     # TODO: Refactor the following code into a separate 'model' class
-    [{ name: 'database 1' }, { name: 'database 2' }, { name: 'database 3' }].to_json
+    [{ _id: 1, name: 'database 1' }, { _id: 2, name: 'database 2' }, { _id: 3, name: 'database 3' }].to_json
   end
 
   run! if /app.rb$/ =~ $0
