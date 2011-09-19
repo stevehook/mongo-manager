@@ -6,9 +6,6 @@ gem "active_support", ">= 3.0"
 gem "haml", ">= 3.1"
 gem "sinatra", ">= 1.2.6"
 gem "sinatra-reloader", ">= 0.5.0"
-# gem "therubyracer"
-# gem "coffee-script"
-# gem "execjs"
 
 group :test, :development do
   gem 'rspec', '=2.4.0'
