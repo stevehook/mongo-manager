@@ -12,6 +12,11 @@
     function AppView() {
       AppView.__super__.constructor.apply(this, arguments);
     }
+    AppView.prototype.el = $('#databaseList');
+    AppView.prototype.initialize = function() {
+      return DatabaseCollection.fetch();
+    };
     return AppView;
   })();
+  window.App = new AppView;
 }).call(this);

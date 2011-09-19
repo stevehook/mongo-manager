@@ -15,4 +15,5 @@
     DatabaseCollection.prototype.model = Database;
     return DatabaseCollection;
   })();
+  window.Databases = new DatabaseCollection;
 }).call(this);

@@ -22,10 +22,11 @@ namespace :js do
     javascripts = "#{File.dirname(__FILE__)}/public/javascript/"
     view = ''
     compile_directory(source, javascripts, view)
-    puts view
-    File.open("#{File.dirname(__FILE__)}/views/scripts.haml", 'w+') do |file|
-      file.puts view
-    end
+    # File.open("#{File.dirname(__FILE__)}/views/scripts.haml", 'w+') do |file|
+    #   file.puts view
+    # end
   end
 end
+
+task :default => ['js:compile']
 
