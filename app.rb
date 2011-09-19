@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require 'haml'
 require 'coffee-script'
+require 'json'
 
 module Partials
   def partial( page, variables={} )
@@ -33,6 +34,11 @@ class App < Sinatra::Base
 
   get '/' do
     haml :index
+  end
+
+  get '/databases' do
+    # TODO: Refactor the following code into a separate 'model' class
+    [{ name: 'database 1' }, { name: 'database 2' }, { name: 'database 3' }].to_json
   end
 
   run! if /app.rb$/ =~ $0
