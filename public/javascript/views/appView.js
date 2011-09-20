@@ -24,7 +24,7 @@
     };
     AppView.prototype.addDatabase = function(database) {
       var html, id;
-      id = database.elementID();
+      id = database.get('_id');
       html = this.databaseTemplate({
         id: id,
         name: database.get('name'),

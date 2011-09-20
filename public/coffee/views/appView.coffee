@@ -10,7 +10,7 @@ class window.AppView extends Backbone.View
     databases.fetch()
 
   addDatabase: (database) =>
-    id = database.elementID()
+    id = database.get('_id')
     html = this.databaseTemplate { id: id, name: database.get('name'), url: "databases/#{id}" }
     $("#databaseList").append(html)
 
