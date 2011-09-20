@@ -16,5 +16,3 @@ class window.AppView extends Backbone.View
 
   refreshDatabases: =>
     databases.each(this.addDatabase)
-
-window.App = new AppView

@@ -17,6 +17,7 @@
     AppView.prototype.el = $('#databaseList');
     AppView.prototype.databaseTemplate = _.template($('#databaseItemTemplate').html());
     AppView.prototype.initialize = function() {
+      console.log('AppView#initialize');
       _.extend(databases, Backbone.Events);
       databases.bind('add', this.addDatabase);
       databases.bind('reset', this.refreshDatabases);
@@ -37,5 +38,4 @@
     };
     return AppView;
   })();
-  window.App = new AppView;
 }).call(this);

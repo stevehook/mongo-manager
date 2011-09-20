@@ -5,5 +5,4 @@ class window.DatabaseItemView extends Backbone.View
     'click': 'open'
 
   render: ->
-    console.log 'DatabaseItemView#render'
     $(this.el).html(this.model.get('name'))

@@ -18,7 +18,6 @@
       'click': 'open'
     };
     DatabaseItemView.prototype.render = function() {
-      console.log('DatabaseItemView#render');
       return $(this.el).html(this.model.get('name'));
     };
     return DatabaseItemView;
