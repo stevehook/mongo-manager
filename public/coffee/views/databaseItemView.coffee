@@ -1,7 +1,7 @@
 class window.DatabaseItemView extends Backbone.View
   tagName: 'li'
   className: 'databaseItem'
-    
+
   initialize: ->
     this.template = _.template $('#databaseItemTemplate').html()
 
