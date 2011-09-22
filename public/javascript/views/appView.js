@@ -22,7 +22,6 @@
     };
     AppView.prototype.render = function() {
       var elements;
-      console.log('AppView#render');
       $(this.el).empty();
       elements = [];
       databases.each(function(database) {
@@ -32,9 +31,7 @@
         });
         return elements.push(view.render().el);
       });
-      console.log(elements);
       $(this.el).append(elements);
-      console.log($(this.el));
       return this;
     };
     return AppView;

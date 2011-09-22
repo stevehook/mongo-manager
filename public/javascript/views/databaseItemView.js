@@ -14,15 +14,11 @@
     }
     DatabaseItemView.prototype.tagName = 'li';
     DatabaseItemView.prototype.className = 'databaseItem';
-    DatabaseItemView.prototype.events = {
-      'click': 'open'
-    };
     DatabaseItemView.prototype.initialize = function() {
       return this.template = _.template($('#databaseItemTemplate').html());
     };
     DatabaseItemView.prototype.render = function() {
       var id;
-      console.log('DatabaseItemView#render');
       id = this.model.get('_id');
       $(this.el).html(this.template({
         id: id,
@@ -30,9 +26,6 @@
         url: "databases/" + id
       }));
       return this;
-    };
-    DatabaseItemView.prototype.open = function() {
-      return console.log('DatabaseItemView#open');
     };
     return DatabaseItemView;
   })();

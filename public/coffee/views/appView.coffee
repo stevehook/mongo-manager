@@ -8,13 +8,10 @@ class window.AppView extends Backbone.View
     databases.fetch()
 
   render: =>
-    console.log 'AppView#render'
     $(this.el).empty()
     elements = []
     databases.each (database) -> 
       view = new DatabaseItemView({ model: database })
       elements.push view.render().el
-    console.log elements
     $(this.el).append elements
-    console.log $(this.el)
     this
