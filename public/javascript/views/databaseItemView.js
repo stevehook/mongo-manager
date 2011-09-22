@@ -17,8 +17,22 @@
     DatabaseItemView.prototype.events = {
       'click': 'open'
     };
+    DatabaseItemView.prototype.initialize = function() {
+      return this.template = _.template($('#databaseItemTemplate').html());
+    };
     DatabaseItemView.prototype.render = function() {
-      return $(this.el).html(this.model.get('name'));
+      var id;
+      console.log('DatabaseItemView#render');
+      id = this.model.get('_id');
+      $(this.el).html(this.template({
+        id: id,
+        name: this.model.get('name'),
+        url: "databases/" + id
+      }));
+      return this;
+    };
+    DatabaseItemView.prototype.open = function() {
+      return console.log('DatabaseItemView#open');
     };
     return DatabaseItemView;
   })();

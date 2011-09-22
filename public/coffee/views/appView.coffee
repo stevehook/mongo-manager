@@ -1,9 +1,7 @@
 class window.AppView extends Backbone.View
-  el: $('#databaseList')
-
-  databaseTemplate: _.template($('#databaseItemTemplate').html())
 
   initialize: ->
+    this.el = $('#databaseList')
     _.extend(databases, Backbone.Events)
     databases.bind 'add', this.render
     databases.bind 'reset', this.render
@@ -23,8 +21,9 @@ class window.AppView extends Backbone.View
     $(this.el).empty()
     elements = []
     databases.each (database) -> 
-      view = new DatabaseItemView
-        model: database
-      elements.push(view)
+      view = new DatabaseItemView({ model: database })
+      elements.push view.render().el
+    console.log elements
     $(this.el).append elements
+    console.log $(this.el)
     this

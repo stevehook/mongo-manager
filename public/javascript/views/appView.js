@@ -11,31 +11,14 @@
     __extends(AppView, Backbone.View);
     function AppView() {
       this.render = __bind(this.render, this);
-      this.refreshDatabases = __bind(this.refreshDatabases, this);
-      this.addDatabase = __bind(this.addDatabase, this);
       AppView.__super__.constructor.apply(this, arguments);
     }
-    AppView.prototype.el = $('#databaseList');
-    AppView.prototype.databaseTemplate = _.template($('#databaseItemTemplate').html());
     AppView.prototype.initialize = function() {
+      this.el = $('#databaseList');
       _.extend(databases, Backbone.Events);
       databases.bind('add', this.render);
       databases.bind('reset', this.render);
       return databases.fetch();
-    };
-    AppView.prototype.addDatabase = function(database) {
-      var html, id;
-      id = database.get('_id');
-      html = this.databaseTemplate({
-        id: id,
-        name: database.get('name'),
-        url: "databases/" + id
-      });
-      return $("#databaseList").append(html);
-    };
-    AppView.prototype.refreshDatabases = function() {
-      console.log('AppView#refreshDatabases');
-      return databases.each(this.addDatabase);
     };
     AppView.prototype.render = function() {
       var elements;
@@ -47,9 +30,11 @@
         view = new DatabaseItemView({
           model: database
         });
-        return elements.push(view);
+        return elements.push(view.render().el);
       });
+      console.log(elements);
       $(this.el).append(elements);
+      console.log($(this.el));
       return this;
     };
     return AppView;
