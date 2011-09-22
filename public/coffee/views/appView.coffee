@@ -7,15 +7,6 @@ class window.AppView extends Backbone.View
     databases.bind 'reset', this.render
     databases.fetch()
 
-  # addDatabase: (database) =>
-  #   id = database.get('_id')
-  #   html = this.databaseTemplate { id: id, name: database.get('name'), url: "databases/#{id}" }
-  #   $("#databaseList").append(html)
-
-  # refreshDatabases: =>
-  #   console.log 'AppView#refreshDatabases'
-  #   databases.each(this.addDatabase)
-
   render: =>
     console.log 'AppView#render'
     $(this.el).empty()
