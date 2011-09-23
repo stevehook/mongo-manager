@@ -4,4 +4,5 @@ class window.CollectionCollection extends Backbone.Collection
     # TODO: Bind to a view?
 
   url: ->
-    "databases/#{@database.id}/collections"
+    console.log @database
+    "databases/#{@database.get('id')}/collections"

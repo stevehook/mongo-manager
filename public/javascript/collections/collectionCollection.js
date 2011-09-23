@@ -16,7 +16,8 @@
       this.database = database;
     };
     CollectionCollection.prototype.url = function() {
-      return "databases/" + this.database.id + "/collections";
+      console.log(this.database);
+      return "databases/" + (this.database.get('id')) + "/collections";
     };
     return CollectionCollection;
   })();
