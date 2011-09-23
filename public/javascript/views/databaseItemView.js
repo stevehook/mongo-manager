@@ -14,6 +14,9 @@
     }
     DatabaseItemView.prototype.tagName = 'li';
     DatabaseItemView.prototype.className = 'databaseItem';
+    DatabaseItemView.prototype.events = {
+      'click .databaseItem': 'openDatabase'
+    };
     DatabaseItemView.prototype.initialize = function() {
       return this.template = _.template($('#databaseItemTemplate').html());
     };
@@ -26,6 +29,9 @@
         url: "databases/" + id
       }));
       return this;
+    };
+    DatabaseItemView.prototype.openDatabase = function(event) {
+      return this.model.loadCollections();
     };
     return DatabaseItemView;
   })();

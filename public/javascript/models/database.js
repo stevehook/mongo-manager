@@ -15,6 +15,9 @@
     Database.prototype.defaults = {
       collection_count: 0
     };
+    Database.prototype.loadCollections = function() {
+      return console.log('Database#loadCollections');
+    };
     return Database;
   })();
 }).call(this);
