@@ -4,3 +4,6 @@ class window.Database extends Backbone.Model
 
   loadCollections: ->
     console.log 'Database#loadCollections'
+    unless @collections
+      @collections = new CollectionCollection(this)
+      @collections.fetch()

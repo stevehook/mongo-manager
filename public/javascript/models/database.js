@@ -16,7 +16,11 @@
       collection_count: 0
     };
     Database.prototype.loadCollections = function() {
-      return console.log('Database#loadCollections');
+      console.log('Database#loadCollections');
+      if (!this.collections) {
+        this.collections = new CollectionCollection(this);
+        return this.collections.fetch();
+      }
     };
     return Database;
   })();
