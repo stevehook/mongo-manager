@@ -3,6 +3,7 @@ require 'sinatra/reloader'
 require 'haml'
 require 'coffee-script'
 require 'json'
+require 'mongo'
 
 module Partials
   def partial( page, variables={} )
@@ -16,6 +17,18 @@ class CoffeeHandler < Sinatra::Base
   get "/coffee/*.coffee" do
     filename = params[:splat].first
     coffee filename.to_sym
+  end
+end
+
+class MongoServer
+  # For now we are only going to support a single server (localhost)
+  def connection
+    # TODO: More efficient mechanism to handle connections?
+    Mongo::Connection.new
+  end
+
+  def databases
+    connection.database_names.map { |db_name| { id: db_name, name: db_name } }
   end
 end
 
@@ -45,8 +58,9 @@ class App < Sinatra::Base
   get '/databases' do
     # TODO: Get some real data from mongodb
     # TODO: Refactor the following code into a separate 'model' class
-    [{ _id: 1, name: 'database 1' }, { _id: 2, name: 'database 2' }, { _id: 3, name: 'database 3' }].to_json
+    MongoServer.new.databases.to_json
   end
 
   run! if /app.rb$/ =~ $0
 end
+
