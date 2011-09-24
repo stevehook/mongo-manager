@@ -52,12 +52,14 @@ class App < Sinatra::Base
   get '/databases/:id/collections' do
     # TODO: Get some real data from mongodb
     # TODO: Refactor the following code into a separate 'model' class
+    content_type 'application/json'
     [{ _id: 1, name: 'collection 1' }, { _id: 2, name: 'collection 3' }, { _id: 3, name: 'collection 3' }].to_json
   end
 
   get '/databases' do
     # TODO: Get some real data from mongodb
     # TODO: Refactor the following code into a separate 'model' class
+    content_type 'application/json'
     MongoServer.new.databases.to_json
   end
 

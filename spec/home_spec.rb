@@ -1,11 +1,15 @@
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+# require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+require_relative '../app.rb'
+require 'rack/test'
+
+App.set :environment, :test
+
+def app
+  @app ||= App
+end
 
 describe "home" do
   include Rack::Test::Methods
-
-  def app
-    @app ||= Sinatra::Application
-  end
 
   context "when viewing root" do
     it "should return the correct content-type" do
@@ -21,11 +25,12 @@ describe "home" do
 
     it "should return the correct content-type" do
       get '/databases'
-      last_response.headers["Content-Type"].should =~ /text\/html/
+      last_response.headers["Content-Type"].should =~ /application\/json/
     end
 
     it "should return a list of database names" do
-      
+      get '/databases'
+      # TODO: Meaningful assertions
     end
   end
 end
