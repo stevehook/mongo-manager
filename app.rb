@@ -36,7 +36,14 @@ class App < Sinatra::Base
     haml :index
   end
 
+  get '/databases/:id/collections' do
+    # TODO: Get some real data from mongodb
+    # TODO: Refactor the following code into a separate 'model' class
+    [{ _id: 1, name: 'collection 1' }, { _id: 2, name: 'collection 3' }, { _id: 3, name: 'collection 3' }].to_json
+  end
+
   get '/databases' do
+    # TODO: Get some real data from mongodb
     # TODO: Refactor the following code into a separate 'model' class
     [{ _id: 1, name: 'database 1' }, { _id: 2, name: 'database 2' }, { _id: 3, name: 'database 3' }].to_json
   end
