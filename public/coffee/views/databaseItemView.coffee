@@ -14,6 +14,7 @@ class window.DatabaseItemView extends Backbone.View
     this
 
   openDatabase: (event) ->
+    # TODO: Properly handle repeated calls (e.g. toggle visibility of the child collections)
     @collectionsView = new CollectionsView(@model)
 
 
@@ -23,8 +24,17 @@ class window.CollectionsView extends Backbone.View
   className: 'childPanel'
 
   initialize: (@model) ->
-    @model.loadCollections()
+    @collections = @model.loadCollections()
+    @collections.bind 'add', this.render
+    @collections.bind 'reset', this.render
+    @collections.fetch()
 
+  render: ->
+    console.log 'CollectionsView#render'
+    # TODO: Render a child panel and then create a CollectionItemView for each collection
+
+
+# TODO: Need to put this into a separate file
 class window.CollectionItemView extends Backbone.View
   tagName: 'li'
   className: 'collectionItem'

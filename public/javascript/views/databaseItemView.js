@@ -44,7 +44,13 @@
     CollectionsView.prototype.className = 'childPanel';
     CollectionsView.prototype.initialize = function(model) {
       this.model = model;
-      return this.model.loadCollections();
+      this.collections = this.model.loadCollections();
+      this.collections.bind('add', this.render);
+      this.collections.bind('reset', this.render);
+      return this.collections.fetch();
+    };
+    CollectionsView.prototype.render = function() {
+      return console.log('CollectionsView#render');
     };
     return CollectionsView;
   })();
