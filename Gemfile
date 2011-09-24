@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 gem "nokogiri"
-gem "mongo"
+gem "bson_ext", ">= 1.4.0"
+gem "mongo", ">= 1.4.0"
 gem "rack", "~> 1.2"
 gem "active_support", ">= 3.0"
 gem "haml", ">= 3.1"
