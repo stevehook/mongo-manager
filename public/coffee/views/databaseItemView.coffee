@@ -14,8 +14,7 @@ class window.DatabaseItemView extends Backbone.View
     this
 
   openDatabase: (event) =>
-    # TODO: Properly handle repeated calls (e.g. toggle visibility of the child collections)
-    @collectionsView = new CollectionsView(this, @model)
+    @collectionsView = new CollectionsView(this, @model) unless @collectionsView
 
 
 # TODO: Maybe we need to merge this into the view above but for the time being...

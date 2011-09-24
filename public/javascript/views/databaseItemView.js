@@ -32,7 +32,9 @@
       return this;
     };
     DatabaseItemView.prototype.openDatabase = function(event) {
-      return this.collectionsView = new CollectionsView(this, this.model);
+      if (!this.collectionsView) {
+        return this.collectionsView = new CollectionsView(this, this.model);
+      }
     };
     return DatabaseItemView;
   })();
