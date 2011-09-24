@@ -18,7 +18,7 @@
     CollectionCollection.prototype.model = Collection;
     CollectionCollection.prototype.url = function() {
       console.log(this.database);
-      return "databases/" + (this.database.get('id')) + "/collections";
+      return "databases/" + (this.database.get('_id')) + "/collections";
     };
     return CollectionCollection;
   })();
