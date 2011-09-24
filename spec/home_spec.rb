@@ -1,12 +1,4 @@
-# require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require_relative '../app.rb'
-require 'rack/test'
-
-App.set :environment, :test
-
-def app
-  @app ||= App
-end
+require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "home" do
   include Rack::Test::Methods
