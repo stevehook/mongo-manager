@@ -13,9 +13,9 @@ class window.DatabaseItemView extends Backbone.View
     $(@el).html @template({ id: id, name: @model.get('name'), url: "databases/#{id}" })
     this
 
-  openDatabase: (event) ->
+  openDatabase: (event) =>
     # TODO: Properly handle repeated calls (e.g. toggle visibility of the child collections)
-    @collectionsView = new CollectionsView(@model)
+    @collectionsView = new CollectionsView(this, @model)
 
 
 # TODO: Maybe we need to merge this into the view above but for the time being...
@@ -23,15 +23,25 @@ class window.CollectionsView extends Backbone.View
   tagName: 'div'
   className: 'childPanel'
 
-  initialize: (@model) ->
+  initialize: (@parentView, @model) ->
     @collections = @model.loadCollections()
     @collections.bind 'add', this.render
     @collections.bind 'reset', this.render
     @collections.fetch()
 
-  render: ->
+  render: =>
     console.log 'CollectionsView#render'
+    # TODO: This part is a bit stupid - much easier to just make the children div a part of the original parent view template
+    @el = $('<div></div>')
+    $(@parentView.el).append(@el)
+
     # TODO: Render a child panel and then create a CollectionItemView for each collection
+    elements = []
+    @collections.each (collection) ->
+      view = new CollectionItemView({ model: collection })
+      elements.push view.render().el
+    $(@el).append elements
+    this
 
 
 # TODO: Need to put this into a separate file

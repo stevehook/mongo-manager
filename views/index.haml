@@ -11,6 +11,9 @@
     %script#collectionItemTemplate{ :type => 'text/template' }
       :plain
         <li class='collectionItem' data-id='<%= id %>' data-url='<%= url %>'><%= name %></li>
+    %script#childCollectionTemplate{ :type => 'text/template' }
+      :plain
+        <div class='childCollection'></div>
     =partial :scripts
   %body
     %div#container
