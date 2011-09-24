@@ -56,6 +56,7 @@
       var elements;
       console.log('CollectionsView#render');
       this.el = $('.childCollection', this.parentView.el);
+      this.el.empty();
       elements = [];
       this.collections.each(function(collection) {
         var view;
@@ -64,7 +65,7 @@
         });
         return elements.push(view.render().el);
       });
-      $(this.el).append(elements);
+      this.el.append(elements);
       return this;
     };
     return CollectionsView;

@@ -33,12 +33,12 @@ class window.CollectionsView extends Backbone.View
     console.log 'CollectionsView#render'
     @el = $('.childCollection', @parentView.el)
 
-    # TODO: Render a child panel and then create a CollectionItemView for each collection
+    @el.empty()
     elements = []
     @collections.each (collection) ->
       view = new CollectionItemView({ model: collection })
       elements.push view.render().el
-    $(@el).append elements
+    @el.append elements
     this
 
 
