@@ -6,12 +6,39 @@ class window.DatabaseItemView extends Backbone.View
     'click .databaseItem': 'openDatabase'
 
   initialize: ->
-    this.template = _.template $('#databaseItemTemplate').html()
+    @template = _.template $('#databaseItemTemplate').html()
 
   render: ->
-    id = this.model.get '_id'
-    $(this.el).html this.template({ id: id, name: this.model.get('name'), url: "databases/#{id}" })
+    id = @model.get '_id'
+    $(@el).html @template({ id: id, name: @model.get('name'), url: "databases/#{id}" })
     this
 
   openDatabase: (event) ->
-    this.model.loadCollections()
+    @collectionsView = new CollectionsView(@model)
+
+
+# TODO: Maybe we need to merge this into the view above but for the time being...
+class window.CollectionsView extends Backbone.View
+  tagName: 'div'
+  className: 'childPanel'
+
+  initialize: (@model) ->
+    @model.loadCollections()
+
+class window.CollectionItemView extends Backbone.View
+  tagName: 'li'
+  className: 'collectionItem'
+
+  events:
+    'click .collectionItem': 'openCollection'
+
+  initialize: (@databaseID) ->
+    @template = _.template $('#collectionItemTemplate').html()
+
+  render: ->
+    id = @model.get '_id'
+    $(@el).html @template({ id: id, name: @model.get('name'), url: "databases/#{@databaseID}/collections/#{id}" })
+    this
+
+  openCollection: (event) ->
+    # TODO: 

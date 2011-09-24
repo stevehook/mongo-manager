@@ -8,6 +8,9 @@
     %script#databaseItemTemplate{ :type => 'text/template' }
       :plain
         <li class='databaseItem' data-id='<%= id %>' data-url='<%= url %>'><%= name %></li>
+    %script#collectionItemTemplate{ :type => 'text/template' }
+      :plain
+        <li class='collectionItem' data-id='<%= id %>' data-url='<%= url %>'><%= name %></li>
     =partial :scripts
   %body
     %div#container

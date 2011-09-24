@@ -15,6 +15,7 @@
     CollectionCollection.prototype.initialize = function(database) {
       this.database = database;
     };
+    CollectionCollection.prototype.model = Collection;
     CollectionCollection.prototype.url = function() {
       console.log(this.database);
       return "databases/" + (this.database.get('id')) + "/collections";
