@@ -4,5 +4,4 @@ class window.CollectionCollection extends Backbone.Collection
 
   model: Collection
   url: ->
-    console.log @database
     "databases/#{@database.get('_id')}/collections"
