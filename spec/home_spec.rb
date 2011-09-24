@@ -12,7 +12,9 @@ describe "home" do
 
   context "when viewing /databases" do
     before(:each) do
-      # TODO: Need to mock Mongo::Connection
+      connection_stub = stub('fake_connection')
+      connection_stub.stub(:database_names).and_return(['accounts', 'human_resources', 'it_support'])
+      Mongo::Connection.stub(:new).and_return(connection_stub)
     end
 
     it "should return the correct content-type" do
@@ -23,6 +25,7 @@ describe "home" do
     it "should return a list of database names" do
       get '/databases'
       # TODO: Meaningful assertions
+      puts last_response.body
     end
   end
 end
