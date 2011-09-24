@@ -31,9 +31,7 @@ class window.CollectionsView extends Backbone.View
 
   render: =>
     console.log 'CollectionsView#render'
-    # TODO: This part is a bit stupid - much easier to just make the children div a part of the original parent view template
-    @el = $('<div></div>')
-    $(@parentView.el).append(@el)
+    @el = $('.childCollection', @parentView.el)
 
     # TODO: Render a child panel and then create a CollectionItemView for each collection
     elements = []

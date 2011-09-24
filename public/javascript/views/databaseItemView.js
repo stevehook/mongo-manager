@@ -55,8 +55,7 @@
     CollectionsView.prototype.render = function() {
       var elements;
       console.log('CollectionsView#render');
-      this.el = $('<div></div>');
-      $(this.parentView.el).append(this.el);
+      this.el = $('.childCollection', this.parentView.el);
       elements = [];
       this.collections.each(function(collection) {
         var view;
