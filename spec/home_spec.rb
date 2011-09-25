@@ -13,9 +13,9 @@ describe "home" do
   context "when fetching /databases" do
     before(:each) do
       @database_names = %w{ accounts human_resources it_support}
-      @connection_stub = stub('fake_connection')
-      @connection_stub.stub(:database_names).and_return(@database_names)
-      Mongo::Connection.stub(:new).and_return(@connection_stub)
+      @mongo_server_stub = stub('fake_mongo_server')
+      MongoServer.stub(:new).and_return(@mongo_server_stub)
+      @mongo_server_stub.stub(:databases).and_return(@database_names.map { |name| { id: name, name: name } })
     end
 
     it "should return the correct content-type" do
@@ -31,10 +31,10 @@ describe "home" do
 
     context "when fetching /databases/accounts/collections" do
       before(:each) do
-        @database_stub = stub('fake_database')
-        @connection_stub.stub(:db).and_return(@database_stub)
         @collection_names = %w{ orders order_items customers products suppliers }
-        @database_stub.stub(:collection_names).and_return(@collection_names)
+        @mongo_server_stub = stub('fake_mongo_server')
+        MongoServer.stub(:new).and_return(@mongo_server_stub)
+        @mongo_server_stub.stub(:collections).and_return(@collection_names.map { |name| { id: name, name: name } })
       end
 
       it "should return the correct content-type" do

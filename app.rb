@@ -32,7 +32,18 @@ class MongoServer
   end
 
   def collections(database_name)
-    connection.db(database_name).collection_names.map { |collection_name| { id: collection_name, name: collection_name } }
+    db = connection.db(database_name)
+    db.collection_names.map do |collection_name|
+      collection = db.collection(collection_name)
+      { id: collection_name,
+        name: collection_name,
+        documentCount: collection.stats.count,
+        size: collection.stats.size,
+        storageSize: collection.stats.storageSize,
+        indexCount: collection.stats.nindexes,
+        indexSize: collection.stats.totalIndexSize
+      }
+    end
   end
 end
 
