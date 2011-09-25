@@ -1,0 +1,16 @@
+ul#databaseList, ul.childCollection {
+  list-style-type: none;
+  padding: 0px;
+  margin-left: 20px;
+}
+
+ul#databaseList {
+  font-size: 120%;
+}
+
+ul.childCollection {
+  font-size: 90%;
+}
+
+li.databaseItem {
+}
