@@ -37,11 +37,11 @@ class MongoServer
       collection = db.collection(collection_name)
       { id: collection_name,
         name: collection_name,
-        documentCount: collection.stats.count,
-        size: collection.stats.size,
-        storageSize: collection.stats.storageSize,
-        indexCount: collection.stats.nindexes,
-        indexSize: collection.stats.totalIndexSize
+        documentCount: collection.stats[:count],
+        size: collection.stats[:size],
+        storageSize: collection.stats[:storageSize],
+        indexCount: collection.stats[:nindexes],
+        indexSize: collection.stats[:totalIndexSize]
       }
     end
   end
