@@ -12,7 +12,7 @@ describe "home" do
 
   context "when fetching /databases" do
     before(:each) do
-      @database_names = ['accounts', 'human_resources', 'it_support']
+      @database_names = %w{ accounts human_resources it_support}
       connection_stub = stub('fake_connection')
       connection_stub.stub(:database_names).and_return(@database_names)
       Mongo::Connection.stub(:new).and_return(connection_stub)
@@ -25,28 +25,25 @@ describe "home" do
 
     it "should return a list of database names" do
       get '/databases'
-      # TODO: Meaningful assertions
       expected_body = @database_names.map { |name| { id: name, name: name } }.to_json
       last_response.body.should == expected_body
     end
-  end
 
-  context "when fetching /databases/accounts/collections" do
-    before(:each) do
-      connection_stub = stub('fake_connection')
-      connection_stub.stub(:database_names).and_return(['accounts', 'human_resources', 'it_support'])
-      Mongo::Connection.stub(:new).and_return(connection_stub)
-    end
+    context "when fetching /databases/accounts/collections" do
+      before(:each) do
+        @collection_names = %w{ orders order_items customers products suppliers }
+      end
 
-    it "should return the correct content-type" do
-      get '/databases/accounts/collections'
-      last_response.headers["Content-Type"].should =~ /application\/json/
-    end
+      it "should return the correct content-type" do
+        get '/databases/accounts/collections'
+        last_response.headers["Content-Type"].should =~ /application\/json/
+      end
 
-    it "should return a list of collection names" do
-      get '/databases/accounts/collections'
-      # TODO: Meaningful assertions
-      puts last_response.body
+      it "should return a list of collection names" do
+        get '/databases/accounts/collections'
+        expected_body = @collection_names.map { |name| { id: name, name: name } }.to_json
+        last_response.body.should == expected_body
+      end
     end
   end
 end
