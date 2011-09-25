@@ -32,7 +32,7 @@ class MongoServer
   end
 
   def collections(database_name)
-    connection.db(database_name).collection_names
+    connection.db(database_name).collection_names.map { |collection_name| { id: collection_name, name: collection_name } }
   end
 end
 
@@ -53,16 +53,12 @@ class App < Sinatra::Base
     haml :index
   end
 
-  get '/databases/:id/collections' do
-    # TODO: Get some real data from mongodb
-    # TODO: Refactor the following code into a separate 'model' class
+  get '/databases/:id/collections' do |id|
     content_type 'application/json'
-    [{ _id: 1, name: 'collection 1' }, { _id: 2, name: 'collection 3' }, { _id: 3, name: 'collection 3' }].to_json
+    MongoServer.new.collections(id).to_json
   end
 
   get '/databases' do
-    # TODO: Get some real data from mongodb
-    # TODO: Refactor the following code into a separate 'model' class
     content_type 'application/json'
     MongoServer.new.databases.to_json
   end
