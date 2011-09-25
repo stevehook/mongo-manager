@@ -1,3 +1,16 @@
+div#navigation {
+  float: left;
+  width: 30%;
+  background: #444 none no-repeat scroll;
+  color: #fff;
+  height: 100%;
+}
+
+div#content {
+  float: right;
+  width: 70%;
+}
+
 ul#databaseList, ul.childCollection {
   list-style-type: none;
   padding: 0px;
