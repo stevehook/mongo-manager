@@ -17,7 +17,7 @@
     };
     CollectionCollection.prototype.model = Collection;
     CollectionCollection.prototype.url = function() {
-      return "databases/" + (this.database.get('_id')) + "/collections";
+      return "databases/" + this.database.id + "/collections";
     };
     return CollectionCollection;
   })();
