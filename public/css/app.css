@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 div#navigation {
   float: left;
   width: 30%;
@@ -9,6 +13,7 @@ div#navigation {
 div#content {
   float: right;
   width: 70%;
+  min-height: 200px;
 }
 
 ul#databaseList, ul.childCollection {
