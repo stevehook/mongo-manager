@@ -30,6 +30,10 @@ class MongoServer
   def databases
     connection.database_names.map { |db_name| { id: db_name, name: db_name } }
   end
+
+  def collections(database_name)
+    connection.db(database_name).collection_names
+  end
 end
 
 class App < Sinatra::Base
