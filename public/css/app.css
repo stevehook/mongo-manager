@@ -36,4 +36,9 @@ ul.childCollection {
 }
 
 li.databaseItem {
+
+}
+
+li.databaseItem span:hover, li.collectionItem span:hover {
+  background-color: #333;
 }
