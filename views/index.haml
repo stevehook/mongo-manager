@@ -7,7 +7,11 @@
     %script{ :src => '/javascript/backbone.js', :type => 'text/javascript' }
     %script#databaseItemTemplate{ :type => 'text/template' }
       :plain
-        <li class='databaseItem' data-id='<%= id %>' data-url='<%= url %>'><span><%= name %></span><ul class='childCollection'></ul></li>
+        <li class='databaseItem' data-id='<%= id %>' data-url='<%= url %>'>
+          <a class='treeIcon'></a>
+          <span><%= name %></span>
+          <ul class='childCollection'></ul>
+        </li>
     %script#collectionItemTemplate{ :type => 'text/template' }
       :plain
         <li class='collectionItem' data-id='<%= id %>' data-url='<%= url %>'><span><%= name %></span></li>
