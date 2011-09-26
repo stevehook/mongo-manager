@@ -35,10 +35,15 @@ ul.childCollection {
   font-size: 90%;
 }
 
-li.databaseItem {
+li.databaseItem, li.collectionItem {
+  padding: 1px;
+}
 
+li.databaseItem span, li.collectionItem span {
+  padding: 3px;
+  cursor: pointer;
 }
 
 li.databaseItem span:hover, li.collectionItem span:hover {
-  background-color: #333;
+  background-color: #222;
 }
