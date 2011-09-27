@@ -17,7 +17,7 @@
     };
     Database.prototype.loadCollections = function() {
       if (!this.collections) {
-        this.collections = new CollectionCollection(this);
+        this.collections = new Collections(this);
       }
       return this.collections;
     };

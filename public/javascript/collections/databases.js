@@ -7,19 +7,19 @@
     child.__super__ = parent.prototype;
     return child;
   };
-  window.DatabaseCollection = (function() {
-    __extends(DatabaseCollection, Backbone.Collection);
-    function DatabaseCollection() {
-      DatabaseCollection.__super__.constructor.apply(this, arguments);
+  window.Databases = (function() {
+    __extends(Databases, Backbone.Collection);
+    function Databases() {
+      Databases.__super__.constructor.apply(this, arguments);
     }
-    DatabaseCollection.prototype.model = Database;
-    DatabaseCollection.prototype.url = 'databases';
-    DatabaseCollection.prototype.bind = {
+    Databases.prototype.model = Database;
+    Databases.prototype.url = 'databases';
+    Databases.prototype.bind = {
       add: function() {
         return console.log('Something got added to the collection');
       }
     };
-    return DatabaseCollection;
+    return Databases;
   })();
-  window.databases = new DatabaseCollection;
+  window.databases = new Databases;
 }).call(this);

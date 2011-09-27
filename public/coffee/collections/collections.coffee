@@ -1,4 +1,4 @@
-class window.CollectionCollection extends Backbone.Collection
+class window.Collections extends Backbone.Collection
   initialize: (@database) ->
     # TODO: Bind events to a view?
 

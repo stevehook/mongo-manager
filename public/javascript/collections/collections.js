@@ -7,18 +7,18 @@
     child.__super__ = parent.prototype;
     return child;
   };
-  window.CollectionCollection = (function() {
-    __extends(CollectionCollection, Backbone.Collection);
-    function CollectionCollection() {
-      CollectionCollection.__super__.constructor.apply(this, arguments);
+  window.Collections = (function() {
+    __extends(Collections, Backbone.Collection);
+    function Collections() {
+      Collections.__super__.constructor.apply(this, arguments);
     }
-    CollectionCollection.prototype.initialize = function(database) {
+    Collections.prototype.initialize = function(database) {
       this.database = database;
     };
-    CollectionCollection.prototype.model = Collection;
-    CollectionCollection.prototype.url = function() {
+    Collections.prototype.model = Collection;
+    Collections.prototype.url = function() {
       return "databases/" + this.database.id + "/collections";
     };
-    return CollectionCollection;
+    return Collections;
   })();
 }).call(this);

@@ -4,5 +4,5 @@ class window.Database extends Backbone.Model
 
   loadCollections: ->
     unless @collections
-      @collections = new CollectionCollection(this)
+      @collections = new Collections(this)
     @collections
