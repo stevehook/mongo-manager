@@ -27,4 +27,5 @@ class window.DatabaseItemView extends Backbone.View
 
   gotoDatabase: (event) =>
     console.log 'gotoDatabase'
+    # TODO: Render a databaseDetail view
 
