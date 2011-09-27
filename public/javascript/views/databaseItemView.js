@@ -49,7 +49,8 @@
       }
     };
     DatabaseItemView.prototype.gotoDatabase = function(event) {
-      return console.log('gotoDatabase');
+      console.log('gotoDatabase');
+      return window.location.hash = "databases/" + (this.model.get('id'));
     };
     return DatabaseItemView;
   })();

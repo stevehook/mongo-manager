@@ -27,5 +27,6 @@ class window.DatabaseItemView extends Backbone.View
 
   gotoDatabase: (event) =>
     console.log 'gotoDatabase'
-    # TODO: Render a databaseDetail view
+    window.location.hash = "databases/#{@model.get('id')}"
+    # TODO: Goto the appropriate URL for the given database and let the router do the work
 
