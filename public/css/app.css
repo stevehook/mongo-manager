@@ -40,6 +40,7 @@ li.databaseItem, li.collectionItem {
 }
 
 li.databaseItem span, li.collectionItem span {
+  margin-left: 20px;
   padding: 3px;
   cursor: pointer;
 }
@@ -47,3 +48,16 @@ li.databaseItem span, li.collectionItem span {
 li.databaseItem span:hover, li.collectionItem span:hover {
   background-color: #222;
 }
+
+a.treeIcon {
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  background: url('/icons.png') no-repeat 0 0;
+}
+
+a.treeIcon:hover {
+  background-position: -32px 0;
+}
+
+
