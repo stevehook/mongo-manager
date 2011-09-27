@@ -39,7 +39,7 @@
       if (!this.collectionsView) {
         this.collectionsView = new CollectionsView(this, this.model);
       }
-      icon = $('a.treeIcon', this.el);
+      icon = this.$('a.treeIcon');
       if (this.collectionsView.isVisible) {
         icon.removeClass('expanded');
         return this.collectionsView.hide();

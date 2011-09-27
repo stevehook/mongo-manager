@@ -17,11 +17,11 @@ class window.CollectionsView extends Backbone.View
     @el.append elements
     this
 
-  show: => 
+  show: =>
     this.isVisible = true
     $(@el).show()
 
-  hide: => 
+  hide: =>
     this.isVisible = false
     $(@el).hide()
 
