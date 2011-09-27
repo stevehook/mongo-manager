@@ -28,5 +28,3 @@ class window.DatabaseItemView extends Backbone.View
   gotoDatabase: (event) =>
     console.log 'gotoDatabase'
 
-
-
