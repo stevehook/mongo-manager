@@ -60,4 +60,12 @@ a.treeIcon:hover {
   background-position: -32px 0;
 }
 
+a.expanded {
+  background-position: -16px 0;
+}
+
+a.expanded:hover {
+  background-position: -48px 0;
+}
+
 

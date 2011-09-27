@@ -10,13 +10,15 @@
   window.DatabaseItemView = (function() {
     __extends(DatabaseItemView, Backbone.View);
     function DatabaseItemView() {
-      this.showCollections = __bind(this.showCollections, this);
+      this.gotoDatabase = __bind(this.gotoDatabase, this);
+      this.toggleCollections = __bind(this.toggleCollections, this);
       DatabaseItemView.__super__.constructor.apply(this, arguments);
     }
     DatabaseItemView.prototype.tagName = 'li';
     DatabaseItemView.prototype.className = 'databaseItem';
     DatabaseItemView.prototype.events = {
-      'click .databaseItem': 'showCollections'
+      'click .databaseItem span': 'gotoDatabase',
+      'click .databaseItem a': 'toggleCollections'
     };
     DatabaseItemView.prototype.initialize = function() {
       return this.template = _.template($('#databaseItemTemplate').html());
@@ -31,10 +33,23 @@
       }));
       return this;
     };
-    DatabaseItemView.prototype.showCollections = function(event) {
+    DatabaseItemView.prototype.toggleCollections = function(event) {
+      var icon;
+      console.log('toggleCollections');
       if (!this.collectionsView) {
-        return this.collectionsView = new CollectionsView(this, this.model);
+        this.collectionsView = new CollectionsView(this, this.model);
       }
+      icon = $('a.treeIcon', this.el);
+      if (this.collectionsView.isVisible) {
+        icon.removeClass('expanded');
+        return this.collectionsView.hide();
+      } else {
+        icon.addClass('expanded');
+        return this.collectionsView.show();
+      }
+    };
+    DatabaseItemView.prototype.gotoDatabase = function(event) {
+      return console.log('gotoDatabase');
     };
     return DatabaseItemView;
   })();

@@ -10,6 +10,8 @@
   window.CollectionsView = (function() {
     __extends(CollectionsView, Backbone.View);
     function CollectionsView() {
+      this.hide = __bind(this.hide, this);
+      this.show = __bind(this.show, this);
       this.render = __bind(this.render, this);
       CollectionsView.__super__.constructor.apply(this, arguments);
     }
@@ -36,6 +38,14 @@
       });
       this.el.append(elements);
       return this;
+    };
+    CollectionsView.prototype.show = function() {
+      this.isVisible = true;
+      return $(this.el).show();
+    };
+    CollectionsView.prototype.hide = function() {
+      this.isVisible = false;
+      return $(this.el).hide();
     };
     return CollectionsView;
   })();
