@@ -1,6 +1,7 @@
 class window.AppRouter extends Backbone.Router
     routes:
       "": "clear",
+      "databases/:id/collections/:collectionID": "showCollection",
       "databases/:id": "showDatabase"
 
     clear: =>
@@ -9,6 +10,13 @@ class window.AppRouter extends Backbone.Router
 
     showDatabase: (id) =>
       console.log 'AppRouter#showDatabase'
+      # TODO: fetch the database model from the global collection
       databaseDetailView = new DatabaseDetailView(id)
       databaseDetailView.render()
+
+    showCollection: (id, collectionID) =>
+      console.log 'AppRouter#showDatabase'
+      # TODO: fetch the collection model from the global collection
+      collectionDetailView = new CollectionDetailView(id, collectionID)
+      collectionDetailView.render()
 

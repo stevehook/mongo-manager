@@ -10,12 +10,14 @@
   window.AppRouter = (function() {
     __extends(AppRouter, Backbone.Router);
     function AppRouter() {
+      this.showCollection = __bind(this.showCollection, this);
       this.showDatabase = __bind(this.showDatabase, this);
       this.clear = __bind(this.clear, this);
       AppRouter.__super__.constructor.apply(this, arguments);
     }
     AppRouter.prototype.routes = {
       "": "clear",
+      "databases/:id/collections/:collectionID": "showCollection",
       "databases/:id": "showDatabase"
     };
     AppRouter.prototype.clear = function() {
@@ -26,6 +28,12 @@
       console.log('AppRouter#showDatabase');
       databaseDetailView = new DatabaseDetailView(id);
       return databaseDetailView.render();
+    };
+    AppRouter.prototype.showCollection = function(id, collectionID) {
+      var collectionDetailView;
+      console.log('AppRouter#showDatabase');
+      collectionDetailView = new CollectionDetailView(id, collectionID);
+      return collectionDetailView.render();
     };
     return AppRouter;
   })();
