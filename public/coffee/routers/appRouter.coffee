@@ -15,6 +15,6 @@ class window.AppRouter extends Backbone.Router
 
     showCollection: (databaseName, collectionName) =>
       collection = databases.getCollection(databaseName, collectionName)
-      collectionDetailView = new CollectionDetailView(collection)
+      collectionDetailView = new CollectionDetailView({ model: collection })
       collectionDetailView.render()
 

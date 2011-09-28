@@ -32,7 +32,9 @@
     AppRouter.prototype.showCollection = function(databaseName, collectionName) {
       var collection, collectionDetailView;
       collection = databases.getCollection(databaseName, collectionName);
-      collectionDetailView = new CollectionDetailView(collection);
+      collectionDetailView = new CollectionDetailView({
+        model: collection
+      });
       return collectionDetailView.render();
     };
     return AppRouter;

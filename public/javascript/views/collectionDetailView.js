@@ -18,7 +18,7 @@
       return this.template = _.template($('#collectionDetailTemplate').html());
     };
     CollectionDetailView.prototype.render = function() {
-      return $(this.el).html(this.template(this.model.getAttributes()));
+      return $(this.el).html(this.template(this.model.toJSON()));
     };
     return CollectionDetailView;
   })();
