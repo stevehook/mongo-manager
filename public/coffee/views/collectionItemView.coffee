@@ -5,17 +5,19 @@ class window.CollectionItemView extends Backbone.View
   events:
     'click .collectionItem > span': 'gotoCollection'
 
-  initialize: (@databaseID) ->
+  initialize: (options) ->
+    console.log options
+    @database = options.database
     @template = _.template $('#collectionItemTemplate').html()
 
   render: ->
     id = @model.get 'id'
-    $(@el).html @template({ id: id, name: @model.get('name'), url: "databases/#{@databaseID}/collections/#{id}" })
+    $(@el).html @template({ id: id, name: @model.get('name'), url: "databases/#{@database.id}/collections/#{id}" })
     this
 
   openCollection: (event) ->
     # TODO: 
 
   gotoCollection: (event) =>
-    collectionID = $(event.target).parent().attr('data-id')
-    window.location.hash = "databases/#{@model.get('id')}/collections/#{collectionID}"
+    url = $(event.target).parent().attr('data-url')
+    window.location.hash = url

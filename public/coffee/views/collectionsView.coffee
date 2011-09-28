@@ -6,13 +6,12 @@ class window.CollectionsView extends Backbone.View
     @collections.fetch()
 
   render: =>
-    console.log 'CollectionsView#render'
     @el = $('.childCollection', @parentView.el)
 
     @el.empty()
     elements = []
-    @collections.each (collection) ->
-      view = new CollectionItemView({ model: collection })
+    @collections.each (collection) =>
+      view = new CollectionItemView({ model: collection, database: @model })
       elements.push view.render().el
     @el.append elements
     this

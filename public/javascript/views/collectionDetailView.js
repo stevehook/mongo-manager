@@ -14,9 +14,11 @@
       CollectionDetailView.__super__.constructor.apply(this, arguments);
     }
     CollectionDetailView.prototype.el = '#content';
+    CollectionDetailView.prototype.initialize = function() {
+      return this.template = _.template($('#collectionDetailTemplate').html());
+    };
     CollectionDetailView.prototype.render = function() {
-      console.log('CollectionDetailView#render');
-      return $(this.el).text('Should be rendering the collection detail view here...');
+      return $(this.el).html(this.template(this.model.getAttributes()));
     };
     return CollectionDetailView;
   })();

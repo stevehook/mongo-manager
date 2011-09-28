@@ -18,8 +18,9 @@
     CollectionItemView.prototype.events = {
       'click .collectionItem > span': 'gotoCollection'
     };
-    CollectionItemView.prototype.initialize = function(databaseID) {
-      this.databaseID = databaseID;
+    CollectionItemView.prototype.initialize = function(options) {
+      console.log(options);
+      this.database = options.database;
       return this.template = _.template($('#collectionItemTemplate').html());
     };
     CollectionItemView.prototype.render = function() {
@@ -28,15 +29,15 @@
       $(this.el).html(this.template({
         id: id,
         name: this.model.get('name'),
-        url: "databases/" + this.databaseID + "/collections/" + id
+        url: "databases/" + this.database.id + "/collections/" + id
       }));
       return this;
     };
     CollectionItemView.prototype.openCollection = function(event) {};
     CollectionItemView.prototype.gotoCollection = function(event) {
-      var collectionID;
-      collectionID = $(event.target).parent().attr('data-id');
-      return window.location.hash = "databases/" + (this.model.get('id')) + "/collections/" + collectionID;
+      var url;
+      url = $(event.target).parent().attr('data-url');
+      return window.location.hash = url;
     };
     return CollectionItemView;
   })();

@@ -17,22 +17,22 @@
     }
     AppRouter.prototype.routes = {
       "": "clear",
-      "databases/:id/collections/:collectionID": "showCollection",
-      "databases/:id": "showDatabase"
+      "databases/:databaseName/collections/:collectionName": "showCollection",
+      "databases/:name": "showDatabase"
     };
     AppRouter.prototype.clear = function() {
       return console.log('AppRouter#clear');
     };
-    AppRouter.prototype.showDatabase = function(id) {
-      var databaseDetailView;
-      console.log('AppRouter#showDatabase');
-      databaseDetailView = new DatabaseDetailView(id);
+    AppRouter.prototype.showDatabase = function(name) {
+      var database, databaseDetailView;
+      database = databases.getDatabase(databaseName);
+      databaseDetailView = new DatabaseDetailView(databaseName);
       return databaseDetailView.render();
     };
-    AppRouter.prototype.showCollection = function(id, collectionID) {
-      var collectionDetailView;
-      console.log('AppRouter#showDatabase');
-      collectionDetailView = new CollectionDetailView(id, collectionID);
+    AppRouter.prototype.showCollection = function(databaseName, collectionName) {
+      var collection, collectionDetailView;
+      collection = databases.getCollection(databaseName, collectionName);
+      collectionDetailView = new CollectionDetailView(collection);
       return collectionDetailView.render();
     };
     return AppRouter;

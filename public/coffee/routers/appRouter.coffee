@@ -1,22 +1,20 @@
 class window.AppRouter extends Backbone.Router
     routes:
       "": "clear",
-      "databases/:id/collections/:collectionID": "showCollection",
-      "databases/:id": "showDatabase"
+      "databases/:databaseName/collections/:collectionName": "showCollection",
+      "databases/:name": "showDatabase"
 
     clear: =>
       # TODO: Should this be where we create the initial views?
       console.log 'AppRouter#clear'
 
-    showDatabase: (id) =>
-      console.log 'AppRouter#showDatabase'
-      # TODO: fetch the database model from the global collection
-      databaseDetailView = new DatabaseDetailView(id)
+    showDatabase: (name) =>
+      database = databases.getDatabase(databaseName)
+      databaseDetailView = new DatabaseDetailView(databaseName)
       databaseDetailView.render()
 
-    showCollection: (id, collectionID) =>
-      console.log 'AppRouter#showDatabase'
-      # TODO: fetch the collection model from the global collection
-      collectionDetailView = new CollectionDetailView(id, collectionID)
+    showCollection: (databaseName, collectionName) =>
+      collection = databases.getCollection(databaseName, collectionName)
+      collectionDetailView = new CollectionDetailView(collection)
       collectionDetailView.render()
 
