@@ -13,12 +13,13 @@ div#navigation {
   background: #444 none no-repeat scroll;
   color: #fff;
   min-height: 100%;
+  padding: 5px;
 }
 
 div#content {
   margin-left: 30%;
   min-height: 100%;
-  padding: 5px;
+  padding: 5px 15px;
 }
 
 ul#databaseList, ul.childCollection {
@@ -68,4 +69,6 @@ a.expanded:hover {
   background-position: -48px 0;
 }
 
-
+h3 {
+  font-size: 150%;
+}
