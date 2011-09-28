@@ -17,7 +17,7 @@
     DatabaseItemView.prototype.tagName = 'li';
     DatabaseItemView.prototype.className = 'databaseItem';
     DatabaseItemView.prototype.events = {
-      'click .databaseItem span': 'gotoDatabase',
+      'click .databaseItem > span': 'gotoDatabase',
       'click .databaseItem a': 'toggleCollections'
     };
     DatabaseItemView.prototype.initialize = function() {

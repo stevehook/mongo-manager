@@ -3,7 +3,7 @@ class window.DatabaseItemView extends Backbone.View
   className: 'databaseItem'
 
   events:
-    'click .databaseItem span': 'gotoDatabase',
+    'click .databaseItem > span': 'gotoDatabase',
     'click .databaseItem a': 'toggleCollections'
 
   initialize: ->
