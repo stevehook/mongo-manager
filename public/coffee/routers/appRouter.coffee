@@ -5,7 +5,8 @@ class window.AppRouter extends Backbone.Router
       "databases/:name": "showDatabase"
 
     clear: =>
-      # TODO: Should this be where we create the initial views?
+      homeView = new HomeView()
+      homeView.render()
       console.log 'AppRouter#clear'
 
     showDatabase: (name) =>

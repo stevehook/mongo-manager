@@ -21,6 +21,9 @@
       "databases/:name": "showDatabase"
     };
     AppRouter.prototype.clear = function() {
+      var homeView;
+      homeView = new HomeView();
+      homeView.render();
       return console.log('AppRouter#clear');
     };
     AppRouter.prototype.showDatabase = function(name) {
