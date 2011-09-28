@@ -15,6 +15,14 @@
     %script#collectionItemTemplate{ :type => 'text/template' }
       :plain
         <li class='collectionItem' data-id='<%= id %>' data-url='<%= url %>'><span><%= name %></span></li>
+    %script#collectionDetailTemplate{ :type => 'text/template' }
+      :plain
+        <h3><%= name %></h3>
+        <p><span class='detailLabel'>Document Count:</span><span class='detailValue'><%= documentCount %></span></p>
+        <p><span class='detailLabel'>Size:</span><span class='detailValue'><%= size %></span></p>
+        <p><span class='detailLabel'>Storage Size:</span><span class='detailValue'><%= storageSize %></span></p>
+        <p><span class='detailLabel'>Index Count:</span><span class='detailValue'><%= indexCount %></span></p>
+        <p><span class='detailLabel'>Index Size:</span><span class='detailValue'><%= indexSize %></span></p>
     =partial :scripts
   %body
     %div#container
