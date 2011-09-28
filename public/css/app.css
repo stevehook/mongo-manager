@@ -72,3 +72,7 @@ a.expanded:hover {
 h3 {
   font-size: 150%;
 }
+
+.navigationTitle {
+  cursor: pointer;
+}

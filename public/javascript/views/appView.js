@@ -10,11 +10,16 @@
   window.AppView = (function() {
     __extends(AppView, Backbone.View);
     function AppView() {
+      this.home = __bind(this.home, this);
       this.render = __bind(this.render, this);
       AppView.__super__.constructor.apply(this, arguments);
     }
+    AppView.prototype.el = '#navigation';
+    AppView.prototype.events = {
+      'click .navigationTitle': 'home'
+    };
     AppView.prototype.initialize = function() {
-      this.el = $('#databaseList');
+      this.list = $('#databaseList');
       _.extend(databases, Backbone.Events);
       databases.bind('add', this.render);
       databases.bind('reset', this.render);
@@ -22,7 +27,7 @@
     };
     AppView.prototype.render = function() {
       var elements;
-      $(this.el).empty();
+      this.list.empty();
       elements = [];
       databases.each(function(database) {
         var view;
@@ -31,8 +36,11 @@
         });
         return elements.push(view.render().el);
       });
-      $(this.el).append(elements);
+      this.list.append(elements);
       return this;
+    };
+    AppView.prototype.home = function() {
+      return window.location.hash = '';
     };
     return AppView;
   })();

@@ -1,16 +1,24 @@
 class window.AppView extends Backbone.View
+  el: '#navigation'
+
+  events:
+    'click .navigationTitle': 'home'
+
   initialize: ->
-    this.el = $('#databaseList')
+    @list = $('#databaseList')
     _.extend(databases, Backbone.Events)
     databases.bind 'add', this.render
     databases.bind 'reset', this.render
     databases.fetch()
 
   render: =>
-    $(this.el).empty()
+    @list.empty()
     elements = []
     databases.each (database) ->
       view = new DatabaseItemView({ model: database })
       elements.push view.render().el
-    $(this.el).append elements
+    @list.append elements
     this
+
+  home: =>
+    window.location.hash = ''
