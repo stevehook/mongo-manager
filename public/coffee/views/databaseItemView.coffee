@@ -26,7 +26,6 @@ class window.DatabaseItemView extends Backbone.View
       @collectionsView.show()
 
   gotoDatabase: (event) =>
-    console.log 'gotoDatabase'
     window.location.hash = "databases/#{@model.get('id')}"
     # TODO: Goto the appropriate URL for the given database and let the router do the work
 

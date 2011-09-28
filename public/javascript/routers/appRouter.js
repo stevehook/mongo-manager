@@ -22,7 +22,10 @@
       return console.log('AppRouter#clear');
     };
     AppRouter.prototype.showDatabase = function(id) {
-      return console.log('AppRouter#showDatabase');
+      var databaseDetailView;
+      console.log('AppRouter#showDatabase');
+      databaseDetailView = new DatabaseDetailView(id);
+      return databaseDetailView.render();
     };
     return AppRouter;
   })();
