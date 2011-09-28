@@ -4,7 +4,6 @@ class window.DatabaseItemView extends Backbone.View
 
   events:
     'click .databaseItem > span': 'gotoDatabase',
-    'click .collectionItem > span': 'gotoCollection',
     'click .databaseItem a': 'toggleCollections'
 
   initialize: ->
@@ -28,8 +27,4 @@ class window.DatabaseItemView extends Backbone.View
 
   gotoDatabase: (event) =>
     window.location.hash = "databases/#{@model.get('id')}"
-
-  gotoCollection: (event) =>
-    collectionID = $(event.target).attr('data-id')
-    window.location.hash = "databases/#{@model.get('id')}/collections/#{collectionID}"
 

@@ -10,7 +10,6 @@
   window.DatabaseItemView = (function() {
     __extends(DatabaseItemView, Backbone.View);
     function DatabaseItemView() {
-      this.gotoCollection = __bind(this.gotoCollection, this);
       this.gotoDatabase = __bind(this.gotoDatabase, this);
       this.toggleCollections = __bind(this.toggleCollections, this);
       DatabaseItemView.__super__.constructor.apply(this, arguments);
@@ -19,7 +18,6 @@
     DatabaseItemView.prototype.className = 'databaseItem';
     DatabaseItemView.prototype.events = {
       'click .databaseItem > span': 'gotoDatabase',
-      'click .collectionItem > span': 'gotoCollection',
       'click .databaseItem a': 'toggleCollections'
     };
     DatabaseItemView.prototype.initialize = function() {
@@ -52,11 +50,6 @@
     };
     DatabaseItemView.prototype.gotoDatabase = function(event) {
       return window.location.hash = "databases/" + (this.model.get('id'));
-    };
-    DatabaseItemView.prototype.gotoCollection = function(event) {
-      var collectionID;
-      collectionID = $(event.target).attr('data-id');
-      return window.location.hash = "databases/" + (this.model.get('id')) + "/collections/" + collectionID;
     };
     return DatabaseItemView;
   })();
