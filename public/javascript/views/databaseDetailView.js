@@ -14,8 +14,11 @@
       DatabaseDetailView.__super__.constructor.apply(this, arguments);
     }
     DatabaseDetailView.prototype.el = '#content';
+    DatabaseDetailView.prototype.initialize = function() {
+      return this.template = _.template($('#databaseDetailTemplate').html());
+    };
     DatabaseDetailView.prototype.render = function() {
-      $(this.el).text('Should be rendering the database detail view here...');
+      $(this.el).html(this.template(this.model.toJSON()));
       return this;
     };
     return DatabaseDetailView;

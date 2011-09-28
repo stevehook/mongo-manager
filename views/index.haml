@@ -15,6 +15,9 @@
     %script#collectionItemTemplate{ :type => 'text/template' }
       :plain
         <li class='collectionItem' data-id='<%= id %>' data-url='<%= url %>'><span><%= name %></span></li>
+    %script#databaseDetailTemplate{ :type => 'text/template' }
+      :plain
+        <h3 class='contentTitle'><%= name %></h3>
     %script#collectionDetailTemplate{ :type => 'text/template' }
       :plain
         <h3 class='contentTitle'><%= name %></h3>
