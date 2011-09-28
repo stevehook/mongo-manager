@@ -6,3 +6,4 @@ class window.CollectionDetailView extends Backbone.View
 
   render: =>
     $(@el).html @template(@model.toJSON())
+    this

@@ -3,4 +3,5 @@ class window.DatabaseDetailView extends Backbone.View
 
   render: =>
     $(@el).text 'Should be rendering the database detail view here...'
+    this
 

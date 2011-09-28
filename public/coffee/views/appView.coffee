@@ -1,5 +1,4 @@
 class window.AppView extends Backbone.View
-
   initialize: ->
     this.el = $('#databaseList')
     _.extend(databases, Backbone.Events)
