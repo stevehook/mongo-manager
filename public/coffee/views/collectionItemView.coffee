@@ -6,7 +6,6 @@ class window.CollectionItemView extends Backbone.View
     'click .collectionItem > span': 'gotoCollection'
 
   initialize: (options) ->
-    console.log options
     @database = options.database
     @template = _.template $('#collectionItemTemplate').html()
 

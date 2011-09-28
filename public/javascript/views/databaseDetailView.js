@@ -15,7 +15,6 @@
     }
     DatabaseDetailView.prototype.el = '#content';
     DatabaseDetailView.prototype.render = function() {
-      console.log('DatabaseDetailView#render');
       return $(this.el).text('Should be rendering the database detail view here...');
     };
     return DatabaseDetailView;

@@ -19,7 +19,6 @@
       'click .collectionItem > span': 'gotoCollection'
     };
     CollectionItemView.prototype.initialize = function(options) {
-      console.log(options);
       this.database = options.database;
       return this.template = _.template($('#collectionItemTemplate').html());
     };
