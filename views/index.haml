@@ -17,7 +17,7 @@
         <li class='collectionItem' data-id='<%= id %>' data-url='<%= url %>'><span><%= name %></span></li>
     %script#collectionDetailTemplate{ :type => 'text/template' }
       :plain
-        <h3><%= name %></h3>
+        <h3 class='contentTitle'><%= name %></h3>
         <p><span class='detailLabel'>Document Count:</span><span class='detailValue'><%= documentCount %></span></p>
         <p><span class='detailLabel'>Size:</span><span class='detailValue'><%= size %></span></p>
         <p><span class='detailLabel'>Storage Size:</span><span class='detailValue'><%= storageSize %></span></p>
@@ -27,5 +27,6 @@
   %body
     %div#container
       %div#navigation
+        %h3.navigationTitle localhost
         %ul#databaseList
       %div#content Some content goes here...
