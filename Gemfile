@@ -8,6 +8,7 @@ gem "haml", ">= 3.1"
 gem "sinatra", ">= 1.2.6"
 gem "sinatra-reloader", ">= 0.5.0"
 gem "watchr"
+gem "jasmine"
 
 group :test, :development do
   gem 'rspec', '=2.4.0'
