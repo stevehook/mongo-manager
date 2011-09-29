@@ -33,6 +33,8 @@ task :default => ['js:compile']
 
 begin
   require 'jasmine'
+
+  
   load 'jasmine/tasks/jasmine.rake'
 rescue LoadError
   task :jasmine do

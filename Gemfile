@@ -11,7 +11,7 @@ gem "watchr"
 gem "jasmine"
 
 group :test, :development do
-  gem 'rspec', '=2.4.0'
+  gem 'rspec', '>= 2.5.0'
   gem 'rack-test'
 end
 
