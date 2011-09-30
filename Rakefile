@@ -5,6 +5,7 @@ require 'coffee-script'
 def compile_directory(source, javascripts, view)
   Dir.entries(source).each do |coffee_file|
     if coffee_file =~ /\.coffee$/
+      # TODO: only do the compilation if the source file is newer
       puts "Compiling #{source}#{coffee_file}"
       system "coffee -c -o #{javascripts} #{source}#{coffee_file}"
       js_file = "#{javascripts}#{coffee_file}".gsub(/\.coffee$/, '.js').gsub(/^.*\/public\/javascript/, '/javascript')
@@ -22,9 +23,12 @@ namespace :js do
     javascripts = "#{File.dirname(__FILE__)}/public/javascript/"
     view = ''
     compile_directory(source, javascripts, view)
-    # File.open("#{File.dirname(__FILE__)}/views/scripts.haml", 'w+') do |file|
-    #   file.puts view
-    # end
+  end
+  task :compile_specs do
+    source = "#{File.dirname(__FILE__)}/spec/coffee/"
+    javascripts = "#{File.dirname(__FILE__)}/spec/javascripts/"
+    view = ''
+    compile_directory(source, javascripts, view)
   end
 end
 
@@ -33,8 +37,6 @@ task :default => ['js:compile']
 
 begin
   require 'jasmine'
-
-  
   load 'jasmine/tasks/jasmine.rake'
 rescue LoadError
   task :jasmine do
