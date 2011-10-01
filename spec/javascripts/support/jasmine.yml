@@ -11,7 +11,14 @@
 #   - dist/**/*.js
 #
 src_files:
-    - public/javascript/**/*.js
+    - public/javascript/jquery.js
+    - public/javascript/underscore.js
+    - public/javascript/backbone.js
+    - public/javascript/sinon-1.2.0.js
+    - public/javascript/models/*.js
+    - public/javascript/collections/*.js
+    - public/javascript/routers/*.js
+    - public/javascript/views/*.js
 
 # stylesheets
 #

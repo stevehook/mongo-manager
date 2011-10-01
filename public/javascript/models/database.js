@@ -19,6 +19,8 @@
     Database.prototype.loadCollections = function() {
       if (!this.collections) {
         this.collections = new Collections(this);
+        this.collections.fetch();
+        console.log('fetched');
       }
       return this.collections;
     };
