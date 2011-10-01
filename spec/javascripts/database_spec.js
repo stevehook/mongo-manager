@@ -8,19 +8,19 @@
     });
     it('fills a collection of databases', function() {
       var databases;
-      this.server.respondWith("GET", "/databases", [
+      this.server.respondWith("GET", "databases", [
         200, {
           "Content-Type": "application/json"
-        }, '{"id": "database1", "name": "database1"}'
+        }, '[{"id": "database1", "name": "database1"}, {"id": "database2", "name": "database2"}]'
       ]);
       databases = new Databases;
       databases.fetch();
       this.server.respond();
-      return databases.length;
+      return expect(databases.length).toEqual(2);
     });
     return it('returns a set of collections', function() {
       var database;
-      this.server.respondWith("GET", "/databases/test/collections", [
+      this.server.respondWith("GET", "databases/test/collections", [
         200, {
           "Content-Type": "application/json"
         }, '{"id": "collection1", "name": "collection1"}'

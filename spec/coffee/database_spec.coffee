@@ -6,16 +6,16 @@ describe 'Database', ->
     @server.restore()
 
   it 'fills a collection of databases', ->
-    @server.respondWith "GET", "/databases",
-      [200, {"Content-Type": "application/json"}, '{"id": "database1", "name": "database1"}']
+    @server.respondWith "GET", "databases",
+      [200, {"Content-Type": "application/json"}, '[{"id": "database1", "name": "database1"}, {"id": "database2", "name": "database2"}]']
     databases = new Databases
     databases.fetch()
     @server.respond()
-    databases.length
+    expect(databases.length).toEqual 2
 
   
   it 'returns a set of collections', ->
-    @server.respondWith "GET", "/databases/test/collections",
+    @server.respondWith "GET", "databases/test/collections",
       [200, {"Content-Type": "application/json"}, '{"id": "collection1", "name": "collection1"}']
     database = new Database { id: 'test', name: 'test' }
     database.getCollection 'collectionName'
