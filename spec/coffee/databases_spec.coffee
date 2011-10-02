@@ -12,3 +12,6 @@ describe 'Databases', ->
     databases.fetch()
     @server.respond()
     expect(databases.length).toEqual 2
+
+  it 'is all lovely', ->
+    expect(true).toBeTruthy()
