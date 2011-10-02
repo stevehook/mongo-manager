@@ -6,7 +6,7 @@
     afterEach(function() {
       return this.server.restore();
     });
-    it('fetch fills a collection of databases', function() {
+    return it('fetch fills a collection of databases', function() {
       var databases;
       this.server.respondWith("GET", "databases", [
         200, {
@@ -17,9 +17,6 @@
       databases.fetch();
       this.server.respond();
       return expect(databases.length).toEqual(2);
-    });
-    return it('is all lovely', function() {
-      return expect(true).toBeTruthy();
     });
   });
 }).call(this);
