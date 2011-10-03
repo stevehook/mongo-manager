@@ -28,7 +28,21 @@ class MongoServer
   end
 
   def databases
-    connection.database_names.map { |db_name| { id: db_name, name: db_name } }
+    connection.database_names.map do |db_name| 
+      database = connection.db(db_name)
+      {
+        id: db_name,
+        name: db_name,
+        collectionCount: database.stats['collections'],
+        documentCount: database.stats['objects'],
+        dataSize: database.stats['dataSize'],
+        storageSize: database.stats['storageSize'],
+        numExtents: database.stats['numExtents'],
+        indexCount: database.stats['indexes'],
+        indexSize: database.stats['indexSize'],
+        fileSize: database.stats['fileSize']
+      }
+    end
   end
 
   def collections(database_name)
