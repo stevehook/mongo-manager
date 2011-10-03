@@ -10,16 +10,24 @@
   window.DatabaseDetailView = (function() {
     __extends(DatabaseDetailView, Backbone.View);
     function DatabaseDetailView() {
+      this.getModelAndRender = __bind(this.getModelAndRender, this);
       this.render = __bind(this.render, this);
       DatabaseDetailView.__super__.constructor.apply(this, arguments);
     }
     DatabaseDetailView.prototype.el = '#content';
     DatabaseDetailView.prototype.initialize = function() {
-      return this.template = _.template($('#databaseDetailTemplate').html());
+      this.template = _.template($('#databaseDetailTemplate').html());
+      if (!this.model) {
+        return databases.bind('reset', this.getModelAndRender);
+      }
     };
     DatabaseDetailView.prototype.render = function() {
       $(this.el).html(this.template(this.model.toJSON()));
       return this;
+    };
+    DatabaseDetailView.prototype.getModelAndRender = function() {
+      this.model = databases.get(this.id);
+      return this.render();
     };
     return DatabaseDetailView;
   })();

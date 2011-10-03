@@ -29,10 +29,16 @@
     AppRouter.prototype.showDatabase = function(name) {
       var database, databaseDetailView;
       database = databases.getDatabase(name);
-      databaseDetailView = new DatabaseDetailView({
-        model: database
-      });
-      return databaseDetailView.render();
+      if (database) {
+        databaseDetailView = new DatabaseDetailView({
+          model: database
+        });
+        return databaseDetailView.render();
+      } else {
+        return databaseDetailView = new DatabaseDetailView({
+          id: name
+        });
+      }
     };
     AppRouter.prototype.showCollection = function(databaseName, collectionName) {
       var collection, collectionDetailView;

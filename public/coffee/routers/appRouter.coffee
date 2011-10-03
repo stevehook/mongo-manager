@@ -11,8 +11,12 @@ class window.AppRouter extends Backbone.Router
 
     showDatabase: (name) =>
       database = databases.getDatabase(name)
-      databaseDetailView = new DatabaseDetailView({ model: database })
-      databaseDetailView.render()
+      if database
+        databaseDetailView = new DatabaseDetailView({ model: database })
+        databaseDetailView.render()
+      else
+        databaseDetailView = new DatabaseDetailView({ id: name })
+
 
     showCollection: (databaseName, collectionName) =>
       collection = databases.getCollection(databaseName, collectionName)
