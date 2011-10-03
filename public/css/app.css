@@ -77,3 +77,15 @@ h3 {
 .navigationTitle {
   cursor: pointer;
 }
+
+.detailLabel {
+  text-align: right;
+  padding: 4px 4px 0 0;
+  font-style: italic;
+  color: #666;
+}
+
+.detailValue {
+  padding: 4px 0 0 0;
+  color: #666;
+}
