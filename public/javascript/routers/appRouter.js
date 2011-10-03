@@ -41,12 +41,26 @@
       }
     };
     AppRouter.prototype.showCollection = function(databaseName, collectionName) {
-      var collection, collectionDetailView;
-      collection = databases.getCollection(databaseName, collectionName);
-      collectionDetailView = new CollectionDetailView({
-        model: collection
-      });
-      return collectionDetailView.render();
+      var collection, collectionDetailView, database;
+      database = databases.getDatabase(databaseName);
+      if (database) {
+        collection = databases.getCollection(databaseName, collectionName);
+        if (collection) {
+          collectionDetailView = new CollectionDetailView({
+            model: collection
+          });
+          return collectionDetailView.render();
+        } else {
+
+        }
+      } else {
+        return databases.bind('reset', function() {
+          database = databases.getDatabase(databaseName);
+          return collectionDetailView = new CollectionDetailView({
+            model: collection
+          });
+        });
+      }
     };
     return AppRouter;
   })();

@@ -35,7 +35,6 @@
     };
     DatabaseItemView.prototype.toggleCollections = function(event) {
       var icon;
-      console.log('toggleCollections');
       if (!this.collectionsView) {
         this.collectionsView = new CollectionsView(this, this.model);
       }

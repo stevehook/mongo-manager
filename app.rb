@@ -76,6 +76,9 @@ class App < Sinatra::Base
   end
 
   get '/' do
+    puts request.url
+    puts request.path
+    puts request.fullpath
     haml :index
   end
 

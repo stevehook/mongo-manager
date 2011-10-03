@@ -1,0 +1,5 @@
+1. Need to establish links between nodes in the navigation panel tree to their child nodes/collections.
+2. Need to work out how to make the tree react to loading of collections under a database node - to create a new CollectionsView.
+   This might need us to define some custom events that get fired when the collections are loaded.
+3. Need to fire some kind of model selection event when a detail view is rendered and react to it in the tree by
+   highlighting the selected node.

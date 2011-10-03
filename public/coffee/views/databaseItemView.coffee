@@ -15,7 +15,6 @@ class window.DatabaseItemView extends Backbone.View
     this
 
   toggleCollections: (event) =>
-    console.log 'toggleCollections'
     @collectionsView = new CollectionsView(this, @model) unless @collectionsView
     icon = this.$('a.treeIcon')
     if @collectionsView.isVisible

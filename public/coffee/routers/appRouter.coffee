@@ -10,7 +10,7 @@ class window.AppRouter extends Backbone.Router
       console.log 'AppRouter#clear'
 
     showDatabase: (name) =>
-      database = databases.getDatabase(name)
+      database = databases.getDatabase name
       if database
         databaseDetailView = new DatabaseDetailView({ model: database })
         databaseDetailView.render()
@@ -19,7 +19,17 @@ class window.AppRouter extends Backbone.Router
 
 
     showCollection: (databaseName, collectionName) =>
-      collection = databases.getCollection(databaseName, collectionName)
-      collectionDetailView = new CollectionDetailView({ model: collection })
-      collectionDetailView.render()
+      database = databases.getDatabase databaseName
+      if database
+        collection = databases.getCollection databaseName, collectionName
+        if collection
+          collectionDetailView = new CollectionDetailView({ model: collection })
+          collectionDetailView.render()
+        else
+          # TODO
+      else
+        databases.bind 'reset', ->
+          database = databases.getDatabase databaseName
+          collectionDetailView = new CollectionDetailView({ model: collection })
+          
 
