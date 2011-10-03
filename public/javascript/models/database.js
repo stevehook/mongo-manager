@@ -16,17 +16,29 @@
     Database.prototype.defaults = {
       collection_count: 0
     };
-    Database.prototype.loadCollections = function() {
+    Database.prototype.loadCollections = function(callback, name) {
       if (!this.collections) {
         this.collections = new Collections(this);
         this.collections.fetch();
-        console.log('fetched');
+        if (callback) {
+          this.collections.bind('reset', __bind(function() {
+            return callback(this.collections.get(name));
+          }, this));
+        }
       }
       return this.collections;
     };
-    Database.prototype.getCollection = function(name) {
-      this.loadCollections();
-      return this.collections.get(name);
+    Database.prototype.getCollection = function(name, callback) {
+      var collection;
+      if (this.collections) {
+        collection = this.collections.get(name);
+        if (callback) {
+          callback(collection);
+        }
+        return collection;
+      } else {
+        return this.loadCollections(callback, name);
+      }
     };
     return Database;
   })();

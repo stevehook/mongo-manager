@@ -7,7 +7,6 @@ class window.AppRouter extends Backbone.Router
     clear: =>
       homeView = new HomeView()
       homeView.render()
-      console.log 'AppRouter#clear'
 
     showDatabase: (name) =>
       database = databases.getDatabase name
@@ -30,6 +29,8 @@ class window.AppRouter extends Backbone.Router
       else
         databases.bind 'reset', ->
           database = databases.getDatabase databaseName
-          collectionDetailView = new CollectionDetailView({ model: collection })
+          database.getCollection collectionName, (collection) ->
+            collectionDetailView = new CollectionDetailView({ model: collection })
+            collectionDetailView.render()
           
 

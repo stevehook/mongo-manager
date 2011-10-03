@@ -23,8 +23,7 @@
     AppRouter.prototype.clear = function() {
       var homeView;
       homeView = new HomeView();
-      homeView.render();
-      return console.log('AppRouter#clear');
+      return homeView.render();
     };
     AppRouter.prototype.showDatabase = function(name) {
       var database, databaseDetailView;
@@ -56,8 +55,11 @@
       } else {
         return databases.bind('reset', function() {
           database = databases.getDatabase(databaseName);
-          return collectionDetailView = new CollectionDetailView({
-            model: collection
+          return database.getCollection(collectionName, function(collection) {
+            collectionDetailView = new CollectionDetailView({
+              model: collection
+            });
+            return collectionDetailView.render();
           });
         });
       }
