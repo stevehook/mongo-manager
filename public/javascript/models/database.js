@@ -16,6 +16,7 @@
     Database.prototype.defaults = {
       collection_count: 0
     };
+    Database.prototype.select = function() {};
     Database.prototype.loadCollections = function(callback, name) {
       if (!this.collections) {
         this.collections = new Collections(this);

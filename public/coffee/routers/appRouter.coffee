@@ -16,7 +16,6 @@ class window.AppRouter extends Backbone.Router
       else
         databaseDetailView = new DatabaseDetailView({ id: name })
 
-
     showCollection: (databaseName, collectionName) =>
       database = databases.getDatabase databaseName
       if database

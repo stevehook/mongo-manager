@@ -28,13 +28,15 @@
       this.el = $('.childCollection', this.parentView.el);
       this.el.empty();
       elements = [];
+      this.childViews = [];
       this.collections.each(__bind(function(collection) {
         var view;
         view = new CollectionItemView({
           model: collection,
           database: this.model
         });
-        return elements.push(view.render().el);
+        elements.push(view.render().el);
+        return this.childViews.push(view);
       }, this));
       this.el.append(elements);
       return this;

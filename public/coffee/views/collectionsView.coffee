@@ -10,9 +10,11 @@ class window.CollectionsView extends Backbone.View
 
     @el.empty()
     elements = []
+    @childViews = []
     @collections.each (collection) =>
       view = new CollectionItemView({ model: collection, database: @model })
       elements.push view.render().el
+      @childViews.push view
     @el.append elements
     this
 

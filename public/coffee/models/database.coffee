@@ -2,6 +2,9 @@ class window.Database extends Backbone.Model
   defaults:
     collection_count: 0
 
+  select: ->
+    # TODO: ...
+
   loadCollections: (callback, name) ->
     unless @collections
       @collections = new Collections(this)

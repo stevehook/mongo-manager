@@ -35,6 +35,7 @@
     CollectionItemView.prototype.openCollection = function(event) {};
     CollectionItemView.prototype.gotoCollection = function(event) {
       var url;
+      this.model.select();
       url = $(event.target).parent().attr('data-url');
       return window.location.hash = url;
     };

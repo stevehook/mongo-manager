@@ -18,5 +18,6 @@ class window.CollectionItemView extends Backbone.View
     # TODO: 
 
   gotoCollection: (event) =>
+    @model.select()
     url = $(event.target).parent().attr('data-url')
     window.location.hash = url
