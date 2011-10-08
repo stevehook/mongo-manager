@@ -5,7 +5,7 @@ class window.Database extends Backbone.Model
   select: ->
     # TODO: ...
 
-  loadCollections: (callback, name) ->
+  loadCollections: (name, callback) ->
     unless @collections
       @collections = new Collections(this)
       @collections.fetch()
@@ -20,4 +20,4 @@ class window.Database extends Backbone.Model
       callback collection if callback
       collection
     else
-      @loadCollections callback, name
+      @loadCollections name, callback

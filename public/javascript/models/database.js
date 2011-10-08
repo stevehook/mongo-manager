@@ -17,7 +17,7 @@
       collection_count: 0
     };
     Database.prototype.select = function() {};
-    Database.prototype.loadCollections = function(callback, name) {
+    Database.prototype.loadCollections = function(name, callback) {
       if (!this.collections) {
         this.collections = new Collections(this);
         this.collections.fetch();
@@ -38,7 +38,7 @@
         }
         return collection;
       } else {
-        return this.loadCollections(callback, name);
+        return this.loadCollections(name, callback);
       }
     };
     return Database;
