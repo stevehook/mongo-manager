@@ -1,8 +1,9 @@
 class window.Databases extends Backbone.Collection
   model: Database
   url: 'databases'
-  bind:
-    add: -> console.log('Something got added to the collection')
+
+  initialize: ->
+    @selected = null
 
   getDatabase: (databaseName) =>
     this.get databaseName

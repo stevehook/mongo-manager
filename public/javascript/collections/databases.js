@@ -16,10 +16,8 @@
     }
     Databases.prototype.model = Database;
     Databases.prototype.url = 'databases';
-    Databases.prototype.bind = {
-      add: function() {
-        return console.log('Something got added to the collection');
-      }
+    Databases.prototype.initialize = function() {
+      return this.selected = null;
     };
     Databases.prototype.getDatabase = function(databaseName) {
       return this.get(databaseName);
