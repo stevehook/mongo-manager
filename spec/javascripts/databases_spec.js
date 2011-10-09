@@ -8,7 +8,7 @@
     });
     return it('fetch fills a collection of databases', function() {
       var databases;
-      this.server.respondWith("GET", "databases", [
+      this.server.respondWith("GET", "/databases", [
         200, {
           "Content-Type": "application/json"
         }, '[{"id": "database1", "name": "database1"}, {"id": "database2", "name": "database2"}]'
