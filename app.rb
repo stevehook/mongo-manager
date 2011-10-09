@@ -61,7 +61,7 @@ class MongoServer
     end
   end
 
-  def databases_and_collections(databases_name)
+  def databases_and_collections(database_name)
     dbs = databases
     selected_db = dbs.find { |db| db[:name] == database_name }
     selected_db[:collections] = collections(database_name)

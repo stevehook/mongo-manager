@@ -13,8 +13,8 @@ class window.AppRouter extends Backbone.Router
       if database
         databaseDetailView = new DatabaseDetailView({ model: database })
         databaseDetailView.render()
-      else
-        databaseDetailView = new DatabaseDetailView({ id: name })
+      # else
+      #   databaseDetailView = new DatabaseDetailView({ id: name })
 
     showCollection: (databaseName, collectionName) =>
       database = databases.getDatabase databaseName
@@ -23,13 +23,13 @@ class window.AppRouter extends Backbone.Router
         if collection
           collectionDetailView = new CollectionDetailView({ model: collection })
           collectionDetailView.render()
-        else
-          # TODO
-      else
-        databases.bind 'reset', ->
-          database = databases.getDatabase databaseName
-          database.getCollection collectionName, (collection) ->
-            collectionDetailView = new CollectionDetailView({ model: collection })
-            collectionDetailView.render()
+      #   else
+      #     # TODO
+      # else
+      #   databases.bind 'reset', ->
+      #     database = databases.getDatabase databaseName
+      #     database.getCollection collectionName, (collection) ->
+      #       collectionDetailView = new CollectionDetailView({ model: collection })
+      #       collectionDetailView.render()
           
 
