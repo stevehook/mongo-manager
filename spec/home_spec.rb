@@ -62,5 +62,10 @@ describe "home" do
       get '/databases/accounts'
       last_response.headers["Content-Type"].should =~ /text\/html/
     end
+
+    it "should pre-populate the databases collection in generated JS" do
+      get '/databases/accounts'
+      last_response.body.should match /var databases = /
+    end
   end
 end
