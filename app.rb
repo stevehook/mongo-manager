@@ -60,6 +60,13 @@ class MongoServer
       }
     end
   end
+
+  def databases_and_collections(databases_name)
+    dbs = databases
+    selected_db = dbs.find { |db| db[:name] == database_name }
+    selected_db[:collections] = collections(database_name)
+    dbs
+  end
 end
 
 class App < Sinatra::Base
@@ -86,7 +93,7 @@ class App < Sinatra::Base
   end
 
   get '/databases/:database_id/collections/:collection_id' do |database_id, collection_id|
-    @databases = MongoServer.new.collections(database_id).to_json
+    @databases = MongoServer.new.databases_and_collections(database_id).to_json
     haml :index
   end
 

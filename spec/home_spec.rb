@@ -81,7 +81,7 @@ describe "home" do
       MongoServer.stub(:new).and_return(@mongo_server_stub)
       @databases = @database_names.map { |name| { id: name, name: name } }
       @databases[1][:collections] = @collection_names.map { |name| { id: name, name: name } }
-      @mongo_server_stub.stub(:databases).and_return(@databases)
+      @mongo_server_stub.stub(:databases_and_collections).and_return(@databases)
     end
 
     it "should return the correct content type" do
