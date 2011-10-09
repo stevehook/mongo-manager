@@ -49,4 +49,18 @@ describe "home" do
       end
     end
   end
+
+  context "when navigating to a specific database" do
+    before(:each) do
+      @database_names = %w{ accounts human_resources it_support}
+      @mongo_server_stub = stub('fake_mongo_server')
+      MongoServer.stub(:new).and_return(@mongo_server_stub)
+      @mongo_server_stub.stub(:databases).and_return(@database_names.map { |name| { id: name, name: name } })
+    end
+
+    it "should return the correct content type" do
+      get '/databases/accounts'
+      last_response.headers["Content-Type"].should =~ /text\/html/
+    end
+  end
 end
