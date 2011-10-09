@@ -49,4 +49,57 @@ describe "home" do
       end
     end
   end
+
+  context "when navigating to a specific database" do
+    before(:each) do
+      @database_names = %w{ accounts human_resources it_support}
+      @mongo_server_stub = stub('fake_mongo_server')
+      MongoServer.stub(:new).and_return(@mongo_server_stub)
+      @mongo_server_stub.stub(:databases).and_return(@database_names.map { |name| { id: name, name: name } })
+    end
+
+    it "should return the correct content type" do
+      get '/databases/accounts'
+      last_response.headers["Content-Type"].should =~ /text\/html/
+    end
+
+    it "should pre-populate the databases collection in generated JS" do
+      get '/databases/accounts'
+      last_response.body.should match /window.databases.reset/
+      last_response.body.should match /"id":"accounts"/
+      last_response.body.should match /"id":"human_resources"/
+      last_response.body.should match /"id":"it_support"/
+      last_response.body.should_not match /"id":"marketing"/
+    end
+  end
+
+  context "when navigating to a specific collection" do
+    before(:each) do
+      @database_names = %w{ accounts human_resources it_support}
+      @collection_names = %w{ orders order_items customers products suppliers }
+      @mongo_server_stub = stub('fake_mongo_server')
+      MongoServer.stub(:new).and_return(@mongo_server_stub)
+      @databases = @database_names.map { |name| { id: name, name: name } }
+      @databases[1][:collections] = @collection_names.map { |name| { id: name, name: name } }
+      @mongo_server_stub.stub(:databases_and_collections).and_return(@databases)
+    end
+
+    it "should return the correct content type" do
+      get '/databases/accounts/collections/customers'
+      last_response.headers["Content-Type"].should =~ /text\/html/
+    end
+
+    it "should pre-populate the databases collection in generated JS" do
+      get '/databases/accounts/collections/customers'
+      last_response.body.should match /window.databases.reset/
+      last_response.body.should match /"id":"accounts"/
+      last_response.body.should match /"id":"human_resources"/
+      last_response.body.should match /"id":"it_support"/
+      last_response.body.should match /"collections":/
+      last_response.body.should match /"id":"orders"/
+      last_response.body.should match /"id":"order_items"/
+      last_response.body.should match /"id":"customers"/
+      last_response.body.should_not match /"id":"marketing"/
+    end
+  end
 end

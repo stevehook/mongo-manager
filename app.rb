@@ -60,6 +60,13 @@ class MongoServer
       }
     end
   end
+
+  def databases_and_collections(database_name)
+    dbs = databases
+    selected_db = dbs.find { |db| db[:name] == database_name }
+    selected_db[:collections] = collections(database_name)
+    dbs
+  end
 end
 
 class App < Sinatra::Base
@@ -67,7 +74,7 @@ class App < Sinatra::Base
   helpers Partials
 
   set :static, true
-  set :public, 'public'
+  set :public_folder, 'public'
 
   helpers do
     def partial(page, options={})
@@ -76,9 +83,17 @@ class App < Sinatra::Base
   end
 
   get '/' do
-    puts request.url
-    puts request.path
-    puts request.fullpath
+    @databases = MongoServer.new.databases.to_json
+    haml :index
+  end
+
+  get '/databases/:id' do |id|
+    @databases = MongoServer.new.databases.to_json
+    haml :index
+  end
+
+  get '/databases/:database_id/collections/:collection_id' do |database_id, collection_id|
+    @databases = MongoServer.new.databases_and_collections(database_id).to_json
     haml :index
   end
 

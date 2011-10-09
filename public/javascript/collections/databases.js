@@ -15,7 +15,7 @@
       Databases.__super__.constructor.apply(this, arguments);
     }
     Databases.prototype.model = Database;
-    Databases.prototype.url = 'databases';
+    Databases.prototype.url = '/databases';
     Databases.prototype.initialize = function() {
       return this.selected = null;
     };

@@ -25,5 +25,5 @@ class window.DatabaseItemView extends Backbone.View
       @collectionsView.show()
 
   gotoDatabase: (event) =>
-    window.location.hash = "databases/#{@model.get('id')}"
+    appRouter.navigate "databases/#{@model.get('id')}", true
 

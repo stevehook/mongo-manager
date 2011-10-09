@@ -33,10 +33,6 @@
           model: database
         });
         return databaseDetailView.render();
-      } else {
-        return databaseDetailView = new DatabaseDetailView({
-          id: name
-        });
       }
     };
     AppRouter.prototype.showCollection = function(databaseName, collectionName) {
@@ -49,19 +45,7 @@
             model: collection
           });
           return collectionDetailView.render();
-        } else {
-
         }
-      } else {
-        return databases.bind('reset', function() {
-          database = databases.getDatabase(databaseName);
-          return database.getCollection(collectionName, function(collection) {
-            collectionDetailView = new CollectionDetailView({
-              model: collection
-            });
-            return collectionDetailView.render();
-          });
-        });
       }
     };
     return AppRouter;

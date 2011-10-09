@@ -40,7 +40,7 @@
       return this;
     };
     AppView.prototype.home = function() {
-      return window.location.hash = '';
+      return appRouter.navigate('', true);
     };
     return AppView;
   })();

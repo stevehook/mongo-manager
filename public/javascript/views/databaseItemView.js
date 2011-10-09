@@ -48,7 +48,7 @@
       }
     };
     DatabaseItemView.prototype.gotoDatabase = function(event) {
-      return window.location.hash = "databases/" + (this.model.get('id'));
+      return appRouter.navigate("databases/" + (this.model.get('id')), true);
     };
     return DatabaseItemView;
   })();

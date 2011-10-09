@@ -1,6 +1,6 @@
 class window.Databases extends Backbone.Collection
   model: Database
-  url: 'databases'
+  url: '/databases'
 
   initialize: ->
     @selected = null
