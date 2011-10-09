@@ -67,7 +67,7 @@ class App < Sinatra::Base
   helpers Partials
 
   set :static, true
-  set :public, 'public'
+  set :public_folder, 'public'
 
   helpers do
     def partial(page, options={})
