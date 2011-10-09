@@ -20,4 +20,4 @@ class window.CollectionItemView extends Backbone.View
   gotoCollection: (event) =>
     @model.select()
     url = $(event.target).parent().attr('data-url')
-    window.location.hash = url
+    appRouter.navigate url, true

@@ -21,4 +21,4 @@ class window.AppView extends Backbone.View
     this
 
   home: =>
-    window.location.hash = ''
+    appRouter.navigate '', true

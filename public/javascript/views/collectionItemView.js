@@ -37,7 +37,7 @@
       var url;
       this.model.select();
       url = $(event.target).parent().attr('data-url');
-      return window.location.hash = url;
+      return appRouter.navigate(url, true);
     };
     return CollectionItemView;
   })();
