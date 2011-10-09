@@ -76,19 +76,17 @@ class App < Sinatra::Base
   end
 
   get '/' do
-    puts request.url
-    puts request.path
-    puts request.fullpath
+    @databases = MongoServer.new.databases.to_json
     haml :index
   end
 
   get '/databases/:id' do |id|
-    databases = MongoServer.new.databases.to_json
+    @databases = MongoServer.new.databases.to_json
     haml :index
   end
 
   get '/databases/:database_id/collections/:collection_id' do |database_id, collection_id|
-    databases = MongoServer.new.collections(database_id).to_json
+    @databases = MongoServer.new.collections(database_id).to_json
     haml :index
   end
 
