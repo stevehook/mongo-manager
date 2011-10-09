@@ -82,6 +82,16 @@ class App < Sinatra::Base
     haml :index
   end
 
+  get '/databases/:id' do |id|
+    databases = MongoServer.new.databases.to_json
+    haml :index
+  end
+
+  get '/databases/:database_id/collections/:collection_id' do |database_id, collection_id|
+    databases = MongoServer.new.collections(database_id).to_json
+    haml :index
+  end
+
   get '/databases/:id/collections' do |id|
     content_type 'application/json'
     MongoServer.new.collections(id).to_json
