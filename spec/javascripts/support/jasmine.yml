@@ -15,6 +15,7 @@ src_files:
     - public/javascript/underscore.js
     - public/javascript/backbone.js
     - public/javascript/sinon-1.2.0.js
+    - public/javascript/helpers/jasmine-jquery-1.3.1.js
     - public/javascript/models/*.js
     - public/javascript/collections/*.js
     - public/javascript/routers/*.js
