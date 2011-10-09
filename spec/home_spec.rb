@@ -66,6 +66,10 @@ describe "home" do
     it "should pre-populate the databases collection in generated JS" do
       get '/databases/accounts'
       last_response.body.should match /window.databases.reset/
+      last_response.body.should match /"id":"accounts"/
+      last_response.body.should match /"id":"human_resources"/
+      last_response.body.should match /"id":"it_support"/
+      last_response.body.should_not match /"id":"marketing"/
     end
   end
 end
