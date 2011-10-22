@@ -24,7 +24,6 @@
     };
     Databases.prototype.getCollection = function(databaseName, collectionName) {
       var database;
-      console.log("getCollection " + databaseName + " " + collectionName);
       database = this.getDatabase(databaseName);
       return database.getCollection(collectionName);
     };

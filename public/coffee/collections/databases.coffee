@@ -9,7 +9,6 @@ class window.Databases extends Backbone.Collection
     this.get databaseName
 
   getCollection: (databaseName, collectionName) =>
-    console.log "getCollection #{databaseName} #{collectionName}"
     database = this.getDatabase databaseName
     database.getCollection(collectionName)
 
