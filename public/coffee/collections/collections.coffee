@@ -1,6 +1,6 @@
 class window.Collections extends Backbone.Collection
-  initialize: (models, options) ->
-    @database = options.database
+  initialize: (database) ->
+    @database = database
     # TODO: Bind events to a view?
 
   model: Collection

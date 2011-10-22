@@ -12,8 +12,8 @@
     function Collections() {
       Collections.__super__.constructor.apply(this, arguments);
     }
-    Collections.prototype.initialize = function(models, options) {
-      return this.database = options.database;
+    Collections.prototype.initialize = function(database) {
+      return this.database = database;
     };
     Collections.prototype.model = Collection;
     Collections.prototype.url = function() {
