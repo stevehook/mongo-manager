@@ -2,7 +2,7 @@
 
 Mongo Manager is a simple Web application for viewing the contents of a
 MongoDB instance. At this time it allows you to browse the databases and
-collections in a 
+collections and their properties in the local MongoDB instance.
 
 The server-side is a Ruby Sinatra application with a backbone.js front
 end, written in CoffeeScript.
@@ -11,8 +11,8 @@ end, written in CoffeeScript.
 
 Prerequisites: Ruby 1.9.2 and MongoDB. 
 
-Clone the repository and install gem dependencies with bundler, then start the
-server:
+Clone the repository and install gem dependencies with bundler, start MongoDB, 
+then start the server:
 
     # bundle install
     # ruby app.rb
@@ -27,4 +27,6 @@ There is a watchr file to build the CoffeeScript source files.
 
     # watchr coffee.watchr
 
+## Roadmap
 
+At present the application 
