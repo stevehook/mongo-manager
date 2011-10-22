@@ -10,6 +10,7 @@ class window.AppRouter extends Backbone.Router
 
     showDatabase: (name) =>
       database = databases.getDatabase name
+      console.log name, database, databases
       if database
         databaseDetailView = new DatabaseDetailView({ model: database })
         databaseDetailView.render()

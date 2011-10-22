@@ -28,6 +28,7 @@
     AppRouter.prototype.showDatabase = function(name) {
       var database, databaseDetailView;
       database = databases.getDatabase(name);
+      console.log(name, database, databases);
       if (database) {
         databaseDetailView = new DatabaseDetailView({
           model: database

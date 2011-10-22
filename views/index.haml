@@ -39,11 +39,6 @@
         <tr><td class='detailLabel'>Index Size:</td><td class='detailValue'><%= indexSize %></span></td>
         </table>
     =partial :scripts
-    %script{ :type => 'text/javascript' }
-      :plain
-        $(function() {
-          window.databases.reset(#{@databases});
-        });
   %body
     %div#container
       %div#navigation
