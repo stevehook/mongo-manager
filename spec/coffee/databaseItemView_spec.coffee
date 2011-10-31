@@ -8,4 +8,6 @@ describe 'AppView', ->
     database = new Database { id: 'Test', name: 'Test' }
     appView = new DatabaseItemView { model: database }
     appView.render()
-    expect(true).toBeTruthy()
+    html = $(appView.el).html()
+    console.log html
+    expect(html).toMatch('data-url="databases/Test"')

@@ -5,7 +5,7 @@
     });
     afterEach(function() {});
     return it('should render a database li', function() {
-      var appView, database;
+      var appView, database, html;
       database = new Database({
         id: 'Test',
         name: 'Test'
@@ -14,7 +14,9 @@
         model: database
       });
       appView.render();
-      return expect(true).toBeTruthy();
+      html = $(appView.el).html();
+      console.log(html);
+      return expect(html).toMatch('data-url="databases/Test"');
     });
   });
 }).call(this);
