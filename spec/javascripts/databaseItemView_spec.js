@@ -5,8 +5,14 @@
     });
     afterEach(function() {});
     return it('should render a database li', function() {
-      var appView;
-      appView = new DatabaseItemView;
+      var appView, database;
+      database = new Database({
+        id: 'Test',
+        name: 'Test'
+      });
+      appView = new DatabaseItemView({
+        model: database
+      });
       appView.render();
       return expect(true).toBeTruthy();
     });

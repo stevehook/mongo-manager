@@ -5,6 +5,7 @@ describe 'AppView', ->
   afterEach ->
 
   it 'should render a database li', ->
-    appView = new DatabaseItemView
+    database = new Database { id: 'Test', name: 'Test' }
+    appView = new DatabaseItemView { model: database }
     appView.render()
     expect(true).toBeTruthy()
