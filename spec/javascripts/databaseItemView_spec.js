@@ -1,9 +1,13 @@
 (function() {
   describe('AppView', function() {
-    beforeEach(function() {});
+    beforeEach(function() {
+      return loadFixtures('_databaseItemTemplate.haml');
+    });
     afterEach(function() {});
     return it('should render a database li', function() {
-      window.appView = new AppView();
+      var appView;
+      appView = new DatabaseItemView;
+      appView.render();
       return expect(true).toBeTruthy();
     });
   });

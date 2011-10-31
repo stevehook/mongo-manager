@@ -1,8 +1,10 @@
 describe 'AppView', ->
   beforeEach ->
+    loadFixtures '_databaseItemTemplate.haml'
     
   afterEach ->
 
   it 'should render a database li', ->
-    window.appView = new AppView()
+    appView = new DatabaseItemView
+    appView.render()
     expect(true).toBeTruthy()
