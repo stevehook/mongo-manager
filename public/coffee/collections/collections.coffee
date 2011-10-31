@@ -5,4 +5,4 @@ class window.Collections extends Backbone.Collection
 
   model: Collection
   url: ->
-    "/databases/#{@database.id}/collections"
+    "/databases/#{@database.get('id')}/collections"

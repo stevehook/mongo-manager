@@ -9,7 +9,7 @@ describe 'Collections', ->
     @server.respondWith "GET", "/databases/test/collections",
       [200, {"Content-Type": "application/json"}, '[{"id": "collection1", "name": "collection1"}, {"id": "collection2", "name": "collection2"}]']
     database = new Database { id: 'test', name: 'test' }
-    collections = new Collections([], { database: database })
+    collections = new Collections(database)
     collections.fetch()
     @server.respond()
     console.log collections

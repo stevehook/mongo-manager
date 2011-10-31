@@ -17,9 +17,7 @@
         id: 'test',
         name: 'test'
       });
-      collections = new Collections([], {
-        database: database
-      });
+      collections = new Collections(database);
       collections.fetch();
       this.server.respond();
       console.log(collections);
