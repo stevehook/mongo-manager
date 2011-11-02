@@ -1,11 +1,11 @@
-describe 'AppView', ->
+describe 'DatabaseItemView', ->
   beforeEach ->
     loadFixtures '_databaseItemTemplate.haml'
     
   afterEach ->
 
   it 'should render a database li', ->
-    database = new Database { id: 'Test', name: 'Test' }
+    database = new Database { id: 'Test', _id: 'Test', name: 'Test' }
     appView = new DatabaseItemView { model: database }
     appView.render()
     html = $(appView.el).html()

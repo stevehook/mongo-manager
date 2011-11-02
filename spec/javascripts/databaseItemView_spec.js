@@ -1,5 +1,5 @@
 (function() {
-  describe('AppView', function() {
+  describe('DatabaseItemView', function() {
     beforeEach(function() {
       return loadFixtures('_databaseItemTemplate.haml');
     });
@@ -8,6 +8,7 @@
       var appView, database, html;
       database = new Database({
         id: 'Test',
+        _id: 'Test',
         name: 'Test'
       });
       appView = new DatabaseItemView({
