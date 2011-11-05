@@ -97,12 +97,11 @@ class App < Sinatra::Base
   end
 
   get '/databases/:database_id/collections/:collection_id/documents' do |database_id, collection_id|
-    puts 'got the right route'
     content_type 'application/json'
     limit = request.params[:limit]
     skip = request.params[:skip]
     @data = MongoServer.new.get_documents(database_id, collection_id, skip, limit).to_json
-    @data.to_json
+    @data
   end
 
   get '/databases/:id' do |id|
