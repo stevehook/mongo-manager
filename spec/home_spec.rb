@@ -102,4 +102,17 @@ describe "home" do
       last_response.body.should_not match /"id":"marketing"/
     end
   end
+
+  context "when fetching the first ten documents from a collection" do
+    before(:each) do
+      @mongo_server_stub = stub('fake_mongo_server')
+      MongoServer.stub(:new).and_return(@mongo_server_stub)
+      @mongo_server_stub.stub(:get_documents).and_return([])
+    end
+
+    it "should return the correct content type" do
+      get '/databases/accounts/collections/customers/documents'
+      last_response.headers["Content-Type"].should =~ /application\/json/
+    end
+  end
 end

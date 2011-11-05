@@ -67,6 +67,15 @@ class MongoServer
     selected_db[:collections] = collections(database_name)
     dbs
   end
+
+  def get_documents(database_name, collection_name, skip = 0, limit = 0)
+    db = connection.db(database_name)
+    collection = db.collection(collection_name)
+    params = {}
+    params[:skip] = skip if skip != 0
+    params[:limit] = limit if limit != 0
+    collection.find(params).to_a
+  end
 end
 
 class App < Sinatra::Base
@@ -85,6 +94,15 @@ class App < Sinatra::Base
   get '/' do
     @databases = MongoServer.new.databases.to_json
     haml :index
+  end
+
+  get '/databases/:database_id/collections/:collection_id/documents' do |database_id, collection_id|
+    puts 'got the right route'
+    content_type 'application/json'
+    limit = request.params[:limit]
+    skip = request.params[:skip]
+    @data = MongoServer.new.get_documents(database_id, collection_id, skip, limit).to_json
+    @data.to_json
   end
 
   get '/databases/:id' do |id|
