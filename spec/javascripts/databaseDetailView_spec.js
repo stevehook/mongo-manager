@@ -24,8 +24,13 @@
       });
       view.render();
       text = $(view.el).text();
-      expect(text).toMatch(/Collection Count:5/);
-      return expect(text).toMatch(/Document Count:43/);
+      expect(text).toMatch(/Database:\s*Test/);
+      expect(text).toMatch(/Data Size:\s*6000/);
+      expect(text).toMatch(/Storage Size:\s*1000000/);
+      expect(text).toMatch(/File Size:\s*200000000/);
+      expect(text).toMatch(/Extent Count:\s*16/);
+      expect(text).toMatch(/Collection Count:\s*5/);
+      return expect(text).toMatch(/Document Count:\s*43/);
     });
   });
 }).call(this);
