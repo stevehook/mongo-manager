@@ -1,6 +1,7 @@
 class window.AppRouter extends Backbone.Router
     routes:
       "": "clear",
+      "databases/:databaseName/collections/:collectionName/documents": "showDocuments",
       "databases/:databaseName/collections/:collectionName": "showCollection",
       "databases/:name": "showDatabase"
 
@@ -20,6 +21,12 @@ class window.AppRouter extends Backbone.Router
       if database
         collection = databases.getCollection databaseName, collectionName
         if collection
-          collectionDetailView = new CollectionDetailView({ model: collection })
+          collectionDetailView = new CollectionDetailView({ databaseModel: database, model: collection })
           collectionDetailView.render()
+
+    showDocuments: (databaseName, collectionName) =>
+      console.log 'AppRouter#showDocuments'
+      # collection = new Documents({ databaseName: databaseName, collectionName: collectionName })
+      # documentView = new DocumentView({ collection: collection })
+      # documentView.render()
 

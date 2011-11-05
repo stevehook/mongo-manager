@@ -5,6 +5,11 @@ describe 'CollectionDetailView', ->
   afterEach ->
 
   it 'should render a collection model to an HTML table', ->
+    database = new Database {
+      id: 'Test',
+      _id: 'Test',
+      name: 'Test'
+    }
     collection = new Collection {
       id: 'Test',
       _id: 'Test',
@@ -15,7 +20,7 @@ describe 'CollectionDetailView', ->
       indexCount: 3,
       indexSize: 2000
     }
-    view = new CollectionDetailView { model: collection }
+    view = new CollectionDetailView { model: collection, databaseModel: database }
     view.render()
     text = $(view.el).text()
     expect(text).toMatch(/Collection:\s*Test/)

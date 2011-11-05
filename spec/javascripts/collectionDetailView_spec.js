@@ -5,7 +5,12 @@
     });
     afterEach(function() {});
     return it('should render a collection model to an HTML table', function() {
-      var collection, text, view;
+      var collection, database, text, view;
+      database = new Database({
+        id: 'Test',
+        _id: 'Test',
+        name: 'Test'
+      });
       collection = new Collection({
         id: 'Test',
         _id: 'Test',
@@ -17,7 +22,8 @@
         indexSize: 2000
       });
       view = new CollectionDetailView({
-        model: collection
+        model: collection,
+        databaseModel: database
       });
       view.render();
       text = $(view.el).text();

@@ -10,16 +10,25 @@
   window.CollectionDetailView = (function() {
     __extends(CollectionDetailView, Backbone.View);
     function CollectionDetailView() {
+      this.viewDocuments = __bind(this.viewDocuments, this);
       this.render = __bind(this.render, this);
       CollectionDetailView.__super__.constructor.apply(this, arguments);
     }
     CollectionDetailView.prototype.el = '#content';
+    CollectionDetailView.prototype.events = {
+      'click a.viewDocumentLink': 'viewDocuments'
+    };
     CollectionDetailView.prototype.initialize = function() {
       return this.template = _.template($('#collectionDetailTemplate').html());
     };
     CollectionDetailView.prototype.render = function() {
       $(this.el).html(this.template(this.model.toJSON()));
       return this;
+    };
+    CollectionDetailView.prototype.viewDocuments = function() {
+      var url;
+      url = "databases/" + (this.options.databaseModel.get('name')) + "/collections/" + (this.model.get('name')) + "/documents";
+      return appRouter.navigate(url, true);
     };
     return CollectionDetailView;
   })();
