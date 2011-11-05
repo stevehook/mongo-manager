@@ -5,18 +5,17 @@
     });
     afterEach(function() {});
     return it('should render a database li', function() {
-      var appView, database, html;
+      var database, html, view;
       database = new Database({
         id: 'Test',
         _id: 'Test',
         name: 'Test'
       });
-      appView = new DatabaseItemView({
+      view = new DatabaseItemView({
         model: database
       });
-      appView.render();
-      html = $(appView.el).html();
-      console.log(html);
+      view.render();
+      html = $(view.el).html();
       return expect(html).toMatch('data-url="databases/Test"');
     });
   });
