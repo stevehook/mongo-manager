@@ -14,7 +14,6 @@
       this.render = __bind(this.render, this);
       CollectionDetailView.__super__.constructor.apply(this, arguments);
     }
-    CollectionDetailView.prototype.el = '#content';
     CollectionDetailView.prototype.events = {
       'click a.viewDocumentLink': 'viewDocuments'
     };
@@ -23,9 +22,11 @@
     };
     CollectionDetailView.prototype.render = function() {
       $(this.el).html(this.template(this.model.toJSON()));
+      $('#content').empty();
+      $('#content').append(this.el);
       return this;
     };
-    CollectionDetailView.prototype.viewDocuments = function() {
+    CollectionDetailView.prototype.viewDocuments = function(e) {
       var url;
       url = "databases/" + (this.options.databaseModel.get('name')) + "/collections/" + (this.model.get('name')) + "/documents";
       return appRouter.navigate(url, true);

@@ -1,6 +1,4 @@
 class window.CollectionDetailView extends Backbone.View
-  el: '#content'
-
   events:
     'click a.viewDocumentLink': 'viewDocuments'
 
@@ -9,8 +7,10 @@ class window.CollectionDetailView extends Backbone.View
 
   render: =>
     $(@el).html @template(@model.toJSON())
+    $('#content').empty()
+    $('#content').append(@el)
     this
 
-  viewDocuments: =>
+  viewDocuments: (e) =>
     url = "databases/#{@options.databaseModel.get('name')}/collections/#{@model.get('name')}/documents"
     appRouter.navigate(url, true)

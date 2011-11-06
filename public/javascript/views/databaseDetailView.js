@@ -14,7 +14,6 @@
       this.render = __bind(this.render, this);
       DatabaseDetailView.__super__.constructor.apply(this, arguments);
     }
-    DatabaseDetailView.prototype.el = '#content';
     DatabaseDetailView.prototype.initialize = function() {
       this.template = _.template($('#databaseDetailTemplate').html());
       if (!this.model) {
@@ -23,6 +22,8 @@
     };
     DatabaseDetailView.prototype.render = function() {
       $(this.el).html(this.template(this.model.toJSON()));
+      $('#content').empty();
+      $('#content').append(this.el);
       return this;
     };
     DatabaseDetailView.prototype.getModelAndRender = function() {
