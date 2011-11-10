@@ -9,7 +9,12 @@ class window.Databases extends Backbone.Collection
     this.get databaseName
 
   getCollection: (databaseName, collectionName) =>
-    database = this.getDatabase databaseName
-    database.getCollection(collectionName)
+    database = @getDatabase databaseName
+    database.getCollection collectionName
+
+  afterLoad: =>
+    console.log @models
+    this.each (database) ->
+      database.afterLoad()
 
 window.databases = new Databases

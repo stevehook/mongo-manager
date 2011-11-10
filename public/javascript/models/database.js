@@ -11,10 +11,18 @@
     __extends(Database, Backbone.Model);
     function Database() {
       this.getCollection = __bind(this.getCollection, this);
+      this.afterLoad = __bind(this.afterLoad, this);
       Database.__super__.constructor.apply(this, arguments);
     }
     Database.prototype.defaults = {
-      collection_count: 0
+      collectionCount: 0
+    };
+    Database.prototype.initialize = function() {};
+    Database.prototype.afterLoad = function() {
+      if (this.attributes.collections && Array.isArray(this.attributes.collections)) {
+        this.collections = new Collections(this);
+        return this.collections.reset(this.attributes.collections);
+      }
     };
     Database.prototype.select = function() {};
     Database.prototype.loadCollections = function(name, callback) {
@@ -31,6 +39,7 @@
     };
     Database.prototype.getCollection = function(name, callback) {
       var collection;
+      console.log(this.collections);
       if (this.collections) {
         collection = this.collections.get(name);
         if (callback) {
@@ -38,7 +47,8 @@
         }
         return collection;
       } else {
-        return this.loadCollections(name, callback);
+        this.loadCollections(name, callback);
+        return null;
       }
     };
     return Database;

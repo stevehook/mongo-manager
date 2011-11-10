@@ -30,7 +30,6 @@
     AppRouter.prototype.showDatabase = function(name) {
       var database, databaseDetailView;
       database = databases.getDatabase(name);
-      console.log(name, database, databases);
       if (database) {
         databaseDetailView = new DatabaseDetailView({
           model: database
@@ -41,6 +40,7 @@
     AppRouter.prototype.showCollection = function(databaseName, collectionName) {
       var collection, collectionDetailView, database;
       database = databases.getDatabase(databaseName);
+      console.log(databases);
       if (database) {
         collection = databases.getCollection(databaseName, collectionName);
         if (collection) {

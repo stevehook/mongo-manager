@@ -10,6 +10,7 @@
   window.Databases = (function() {
     __extends(Databases, Backbone.Collection);
     function Databases() {
+      this.afterLoad = __bind(this.afterLoad, this);
       this.getCollection = __bind(this.getCollection, this);
       this.getDatabase = __bind(this.getDatabase, this);
       Databases.__super__.constructor.apply(this, arguments);
@@ -26,6 +27,12 @@
       var database;
       database = this.getDatabase(databaseName);
       return database.getCollection(collectionName);
+    };
+    Databases.prototype.afterLoad = function() {
+      console.log(this.models);
+      return this.each(function(database) {
+        return database.afterLoad();
+      });
     };
     return Databases;
   })();

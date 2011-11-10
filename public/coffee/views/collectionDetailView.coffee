@@ -6,6 +6,8 @@ class window.CollectionDetailView extends Backbone.View
     @template = _.template $('#collectionDetailTemplate').html()
 
   render: =>
+    console.log 'CollectionDetailView#render'
+    console.log @model
     $(@el).html @template(@model.toJSON())
     $('#content').empty()
     $('#content').append(@el)

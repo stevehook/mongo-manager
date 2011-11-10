@@ -1,6 +1,13 @@
 class window.Database extends Backbone.Model
   defaults:
-    collection_count: 0
+    collectionCount: 0
+
+  initialize: ->
+
+  afterLoad: =>
+    if (@attributes.collections && Array.isArray(@attributes.collections))
+      @collections = new Collections(this)
+      @collections.reset @attributes.collections
 
   select: ->
     # TODO: ...
@@ -15,9 +22,11 @@ class window.Database extends Backbone.Model
     @collections
 
   getCollection: (name, callback) =>
+    console.log @collections
     if @collections
       collection = @collections.get(name)
       callback collection if callback
       collection
     else
       @loadCollections name, callback
+      null
