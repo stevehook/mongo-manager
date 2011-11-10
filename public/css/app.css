@@ -70,6 +70,11 @@ a.expanded:hover {
   background-position: -48px 0;
 }
 
+a.viewDocumentLink {
+  color: #448;
+  cursor: pointer;
+}
+
 h3 {
   font-size: 150%;
 }
