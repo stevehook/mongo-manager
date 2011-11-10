@@ -51,7 +51,17 @@
         }
       }
     };
-    AppRouter.prototype.showDocuments = function(databaseName, collectionName) {};
+    AppRouter.prototype.showDocuments = function(databaseName, collectionName) {
+      var collection, documentView;
+      collection = new Documents({
+        databaseName: databaseName,
+        collectionName: collectionName
+      });
+      documentView = new DocumentListView({
+        collection: collection
+      });
+      return documentView.render();
+    };
     return AppRouter;
   })();
 }).call(this);

@@ -24,7 +24,7 @@ class window.AppRouter extends Backbone.Router
           collectionDetailView.render()
 
     showDocuments: (databaseName, collectionName) =>
-      # collection = new Documents({ databaseName: databaseName, collectionName: collectionName })
-      # documentView = new DocumentView({ collection: collection })
-      # documentView.render()
+      collection = new Documents({ databaseName: databaseName, collectionName: collectionName })
+      documentView = new DocumentListView({ collection: collection })
+      documentView.render()
 
