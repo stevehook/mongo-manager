@@ -13,7 +13,6 @@ class window.Databases extends Backbone.Collection
     database.getCollection collectionName
 
   afterLoad: =>
-    console.log @models
     this.each (database) ->
       database.afterLoad()
 

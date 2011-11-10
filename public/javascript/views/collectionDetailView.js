@@ -21,8 +21,6 @@
       return this.template = _.template($('#collectionDetailTemplate').html());
     };
     CollectionDetailView.prototype.render = function() {
-      console.log('CollectionDetailView#render');
-      console.log(this.model);
       $(this.el).html(this.template(this.model.toJSON()));
       $('#content').empty();
       $('#content').append(this.el);

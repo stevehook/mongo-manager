@@ -22,7 +22,6 @@ class window.Database extends Backbone.Model
     @collections
 
   getCollection: (name, callback) =>
-    console.log @collections
     if @collections
       collection = @collections.get(name)
       callback collection if callback

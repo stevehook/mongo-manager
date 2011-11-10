@@ -20,7 +20,6 @@
       collections = new Collections(database);
       collections.fetch();
       this.server.respond();
-      console.log(collections);
       return expect(collections.length).toEqual(2);
     });
   });

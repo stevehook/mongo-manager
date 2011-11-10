@@ -29,7 +29,6 @@
       return database.getCollection(collectionName);
     };
     Databases.prototype.afterLoad = function() {
-      console.log(this.models);
       return this.each(function(database) {
         return database.afterLoad();
       });

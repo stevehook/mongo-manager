@@ -39,7 +39,6 @@
     };
     Database.prototype.getCollection = function(name, callback) {
       var collection;
-      console.log(this.collections);
       if (this.collections) {
         collection = this.collections.get(name);
         if (callback) {

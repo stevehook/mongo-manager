@@ -40,7 +40,6 @@
     AppRouter.prototype.showCollection = function(databaseName, collectionName) {
       var collection, collectionDetailView, database;
       database = databases.getDatabase(databaseName);
-      console.log(databases);
       if (database) {
         collection = databases.getCollection(databaseName, collectionName);
         if (collection) {
@@ -52,9 +51,7 @@
         }
       }
     };
-    AppRouter.prototype.showDocuments = function(databaseName, collectionName) {
-      return console.log('AppRouter#showDocuments');
-    };
+    AppRouter.prototype.showDocuments = function(databaseName, collectionName) {};
     return AppRouter;
   })();
 }).call(this);

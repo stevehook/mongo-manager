@@ -12,6 +12,5 @@ describe 'Collections', ->
     collections = new Collections(database)
     collections.fetch()
     @server.respond()
-    console.log collections
     expect(collections.length).toEqual 2
 
