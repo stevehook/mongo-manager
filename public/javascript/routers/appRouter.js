@@ -53,7 +53,6 @@
     };
     AppRouter.prototype.showDocuments = function(databaseName, collectionName) {
       var collection, documentView;
-      console.log(databaseName, collectionName);
       collection = new Documents({}, {
         databaseName: databaseName,
         collectionName: collectionName

@@ -1,11 +1,14 @@
 class window.DocumentListView extends Backbone.View
-  tagName: 'div'
+  tagName: 'ul'
+  className: 'documentList'
 
   initialize: ->
-    # @template = _.template $('#databaseItemTemplate').html()
+    @collection.bind 'reset', @render
 
-  render: ->
-    # id = @model.get '_id'
-    # $(@el).html @template({ id: id, name: @model.get('name'), url: "databases/#{id}" })
-    # this
-
+  render: =>
+    @collection.each (doc) =>
+      view = new DocumentView({ model: doc })
+      view.render()
+      $(@el).append view.el
+    $('#content').empty()
+    $('#content').append(@el)
