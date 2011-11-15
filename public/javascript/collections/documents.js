@@ -13,6 +13,12 @@
       Documents.__super__.constructor.apply(this, arguments);
     }
     Documents.prototype.model = Document;
+    Documents.prototype.initialize = function(documents, options) {
+      return this.options = options;
+    };
+    Documents.prototype.url = function() {
+      return "/databases/" + this.options.databaseName + "/collections/" + this.options.collectionName + "/documents";
+    };
     return Documents;
   })();
 }).call(this);
