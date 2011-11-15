@@ -13,22 +13,26 @@
       this.render = __bind(this.render, this);
       DocumentListView.__super__.constructor.apply(this, arguments);
     }
-    DocumentListView.prototype.tagName = 'ul';
-    DocumentListView.prototype.className = 'documentList';
     DocumentListView.prototype.initialize = function() {
+      this.template = _.template($('#documentListTemplate').html());
       return this.collection.bind('reset', this.render);
     };
     DocumentListView.prototype.render = function() {
+      var $el, $ul;
+      $el = $(this.el);
+      $el.html(this.template({
+        collectionName: this.collection.options.collectionName
+      }));
+      $ul = this.$('ul');
       this.collection.each(__bind(function(doc) {
         var view;
         view = new DocumentView({
           model: doc
         });
         view.render();
-        return $(this.el).append(view.el);
+        return $ul.append(view.el);
       }, this));
-      $('#content').empty();
-      return $('#content').append(this.el);
+      return $('#content').empty().append(this.el);
     };
     return DocumentListView;
   })();
