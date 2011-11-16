@@ -6,4 +6,4 @@ class window.DocumentView extends Backbone.View
     @template = _.template $('#documentTemplate').html()
 
   render: ->
-    $(@el).html @template(@model.toJSON())
+    $(@el).html @template({ model: JSON.stringify(@model, null, 2) })

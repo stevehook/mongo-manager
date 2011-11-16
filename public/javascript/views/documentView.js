@@ -18,7 +18,9 @@
       return this.template = _.template($('#documentTemplate').html());
     };
     DocumentView.prototype.render = function() {
-      return $(this.el).html(this.template(this.model.toJSON()));
+      return $(this.el).html(this.template({
+        model: JSON.stringify(this.model, null, 2)
+      }));
     };
     return DocumentView;
   })();
