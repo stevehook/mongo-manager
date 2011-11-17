@@ -1,20 +1,27 @@
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: Trebuchet MS, Calibri, Arial;
+  height: 100%;
 }
 
 div#container {
-  height: auto;
+  position: relative;
   min-height: 100%;
+  #height: auto;
 }
 
 div#navigation {
   position: absolute;
   width: 30%;
   background: #444 none no-repeat scroll;
-  color: #fff;
   min-height: 100%;
+  color: #fff;
   padding: 5px;
+  bottom: 0px;
 }
 
 div#content {
