@@ -1,6 +1,14 @@
 :plain
   <script id='collectionDetailTemplate' type='text/template'>
-    <h3 class='contentTitle'>Collection: <%= name %></h3>
+    <div class='contentHeader'>
+      <h3 class='contentTitle'>Collection: <%= name %></h3>
+    <div>
+    <div class='tabBar'>
+      <ul>
+        <li class='selected'>Details</li>
+        <li><a class='viewDocumentLink'>View Documents</a></li>
+      </ul>
+    </div>
     <table>
       <tr><td class='detailLabel'>Document Count:</td><td class='detailValue'><%= documentCount %></td></tr>
       <tr><td class='detailLabel'>Size:</td><td class='detailValue'><%= size %></span></td>
@@ -9,5 +17,4 @@
       <tr><td class='detailLabel'>Index Size:</td><td class='detailValue'><%= indexSize %></span></td>
     </table>
     <br/>
-    <a class='viewDocumentLink'>View Documents</a>
   </script>

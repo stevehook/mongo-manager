@@ -1,6 +1,14 @@
 :plain
   <script id='documentListTemplate' type='text/template'>
-    <h3 class='contentTitle'>Collection: <%= collectionName %></h3>
+    <div class='contentHeader'>
+      <h3 class='contentTitle'>Collection: <%= name %></h3>
+    <div>
+    <div class='tabBar'>
+      <ul>
+        <li class='selected'>Details</li>
+        <li><a class='viewDocumentLink'>View Documents</a></li>
+      </ul>
+    </div>
     <ul class='documentList'>
     </ul>
   </script>
