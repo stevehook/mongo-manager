@@ -23,7 +23,7 @@
       $el.html(this.template({
         collectionName: this.collection.options.collectionName
       }));
-      $ul = this.$('ul');
+      $ul = this.$('ul.documentList');
       this.collection.each(__bind(function(doc) {
         var view;
         view = new DocumentView({

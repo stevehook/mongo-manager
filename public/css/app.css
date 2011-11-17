@@ -20,7 +20,26 @@ div#navigation {
 div#content {
   margin-left: 30%;
   min-height: 100%;
+}
+
+div.contentHeader {
+  background-color: #ddd;
+  height: 100%;
   padding: 5px 15px;
+}
+
+div.tabBar {
+  background-color: #ddd;
+}
+
+div.tabBar ul {
+  list-style-type: none;
+  display: block;
+}
+
+div.tabBar ul li {
+  list-style-type: none;
+  display: table-cell;
 }
 
 ul#databaseList, ul.childCollection {

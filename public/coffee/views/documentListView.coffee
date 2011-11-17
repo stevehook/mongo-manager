@@ -6,7 +6,7 @@ class window.DocumentListView extends Backbone.View
   render: =>
     $el = $(@el)
     $el.html @template({ collectionName: @collection.options.collectionName })
-    $ul = @$('ul')
+    $ul = @$('ul.documentList')
     @collection.each (doc) =>
       view = new DocumentView({ model: doc })
       view.render()
