@@ -18,8 +18,10 @@ class window.AppRouter extends Backbone.Router
     showCollection: (databaseName, collectionName) =>
       console.log 'showCollection', databaseName, collectionName
       database = databases.getDatabase databaseName
+      console.log database
       if database
         collection = databases.getCollection databaseName, collectionName
+        console.log collection
         if collection
           collectionDetailView = new CollectionDetailView({ databaseModel: database, model: collection })
           collectionDetailView.render()
