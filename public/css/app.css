@@ -54,6 +54,10 @@ div.tabBar ul li a {
   cursor: pointer;
 }
 
+ul.documentList {
+  list-style-type: none;
+}
+
 ul#databaseList, ul.childCollection {
   list-style-type: none;
   padding: 0px;
