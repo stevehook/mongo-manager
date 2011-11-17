@@ -40,6 +40,16 @@ div.tabBar ul {
 div.tabBar ul li {
   list-style-type: none;
   display: table-cell;
+  padding: 10px 20px;
+}
+
+div.tabBar ul li.selected {
+  background-color: #fff;
+}
+
+div.tabBar ul li a {
+  color: #448;
+  cursor: pointer;
 }
 
 ul#databaseList, ul.childCollection {
@@ -87,11 +97,6 @@ a.expanded {
 
 a.expanded:hover {
   background-position: -48px 0;
-}
-
-a.viewDocumentLink {
-  color: #448;
-  cursor: pointer;
 }
 
 h3 {

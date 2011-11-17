@@ -39,6 +39,7 @@
     };
     AppRouter.prototype.showCollection = function(databaseName, collectionName) {
       var collection, collectionDetailView, database;
+      console.log('showCollection', databaseName, collectionName);
       database = databases.getDatabase(databaseName);
       if (database) {
         collection = databases.getCollection(databaseName, collectionName);
@@ -58,7 +59,9 @@
         collectionName: collectionName
       });
       documentView = new DocumentListView({
-        collection: collection
+        collection: collection,
+        databaseName: databaseName,
+        collectionName: collectionName
       });
       return collection.fetch();
     };

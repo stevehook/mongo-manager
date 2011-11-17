@@ -16,6 +16,7 @@ class window.AppRouter extends Backbone.Router
         databaseDetailView.render()
 
     showCollection: (databaseName, collectionName) =>
+      console.log 'showCollection', databaseName, collectionName
       database = databases.getDatabase databaseName
       if database
         collection = databases.getCollection databaseName, collectionName
@@ -25,6 +26,6 @@ class window.AppRouter extends Backbone.Router
 
     showDocuments: (databaseName, collectionName) =>
       collection = new Documents({}, { databaseName: databaseName, collectionName: collectionName })
-      documentView = new DocumentListView({ collection: collection })
+      documentView = new DocumentListView({ collection: collection, databaseName: databaseName, collectionName: collectionName })
       collection.fetch()
 

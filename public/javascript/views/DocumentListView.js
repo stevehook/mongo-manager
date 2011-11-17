@@ -10,9 +10,13 @@
   window.DocumentListView = (function() {
     __extends(DocumentListView, Backbone.View);
     function DocumentListView() {
+      this.viewCollection = __bind(this.viewCollection, this);
       this.render = __bind(this.render, this);
       DocumentListView.__super__.constructor.apply(this, arguments);
     }
+    DocumentListView.prototype.events = {
+      'click a.viewCollectionLink': 'viewCollection'
+    };
     DocumentListView.prototype.initialize = function() {
       this.template = _.template($('#documentListTemplate').html());
       return this.collection.bind('reset', this.render);
@@ -21,7 +25,7 @@
       var $el, $ul;
       $el = $(this.el);
       $el.html(this.template({
-        collectionName: this.collection.options.collectionName
+        name: this.collection.options.collectionName
       }));
       $ul = this.$('ul.documentList');
       this.collection.each(__bind(function(doc) {
@@ -33,6 +37,11 @@
         return $ul.append(view.el);
       }, this));
       return $('#content').empty().append(this.el);
+    };
+    DocumentListView.prototype.viewCollection = function(e) {
+      var url;
+      url = "databases/" + this.collection.options.databaseName + "/collections/" + this.collection.options.collectionName;
+      return appRouter.navigate(url, true);
     };
     return DocumentListView;
   })();
