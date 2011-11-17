@@ -99,6 +99,7 @@ class App < Sinatra::Base
   get '/databases/:database_id/collections/:collection_id/documents' do |database_id, collection_id|
     limit = request.params[:limit]
     skip = request.params[:skip]
+    @databases = MongoServer.new.databases_and_collections(database_id).to_json
     @data = MongoServer.new.get_documents(database_id, collection_id, skip, limit).to_json
     if request.xhr?
       content_type 'application/json'
