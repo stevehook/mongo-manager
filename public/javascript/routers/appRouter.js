@@ -39,12 +39,9 @@
     };
     AppRouter.prototype.showCollection = function(databaseName, collectionName) {
       var collection, collectionDetailView, database;
-      console.log('showCollection', databaseName, collectionName);
       database = databases.getDatabase(databaseName);
-      console.log(database);
       if (database) {
         collection = databases.getCollection(databaseName, collectionName);
-        console.log(collection);
         if (collection) {
           collectionDetailView = new CollectionDetailView({
             databaseModel: database,

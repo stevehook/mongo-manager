@@ -13,4 +13,10 @@ class window.DocumentView extends Backbone.View
 
   toggleDocument: ->
     $pre = @$('pre.documentDetail')
-    $pre.toggle()
+    $icon = this.$('a.treeIcon')
+    if $pre.is(':visible')
+      $icon.removeClass 'expanded'
+      $pre.hide(200)
+    else
+      $icon.addClass 'expanded'
+      $pre.show(200)

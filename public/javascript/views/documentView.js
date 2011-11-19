@@ -27,9 +27,16 @@
       }));
     };
     DocumentView.prototype.toggleDocument = function() {
-      var $pre;
+      var $icon, $pre;
       $pre = this.$('pre.documentDetail');
-      return $pre.toggle();
+      $icon = this.$('a.treeIcon');
+      if ($pre.is(':visible')) {
+        $icon.removeClass('expanded');
+        return $pre.hide(200);
+      } else {
+        $icon.addClass('expanded');
+        return $pre.show(200);
+      }
     };
     return DocumentView;
   })();

@@ -43,11 +43,11 @@
     };
     CollectionsView.prototype.show = function() {
       this.isVisible = true;
-      return $(this.el).show();
+      return $(this.el).show(200);
     };
     CollectionsView.prototype.hide = function() {
       this.isVisible = false;
-      return $(this.el).hide();
+      return $(this.el).hide(200);
     };
     return CollectionsView;
   })();

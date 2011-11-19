@@ -20,10 +20,10 @@ class window.CollectionsView extends Backbone.View
 
   show: =>
     this.isVisible = true
-    $(@el).show()
+    $(@el).show 200
 
   hide: =>
     this.isVisible = false
-    $(@el).hide()
+    $(@el).hide 200
 
 
