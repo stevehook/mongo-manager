@@ -10,6 +10,8 @@ class window.DocumentListView extends Backbone.View
     $el = $(@el)
     $el.html @template({ name: @collection.options.collectionName })
     $ul = @$('ul.documentList')
+    pagingView = new PagingView({ collection: @collection })
+    $el.append pagingView.render().el
     @collection.each (doc) =>
       view = new DocumentView({ model: doc })
       view.render()

@@ -22,12 +22,16 @@
       return this.collection.bind('reset', this.render);
     };
     DocumentListView.prototype.render = function() {
-      var $el, $ul;
+      var $el, $ul, pagingView;
       $el = $(this.el);
       $el.html(this.template({
         name: this.collection.options.collectionName
       }));
       $ul = this.$('ul.documentList');
+      pagingView = new PagingView({
+        collection: this.collection
+      });
+      $el.append(pagingView.render().el);
       this.collection.each(__bind(function(doc) {
         var view;
         view = new DocumentView({
