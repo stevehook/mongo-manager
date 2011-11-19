@@ -19,7 +19,8 @@
     };
     DocumentView.prototype.render = function() {
       return $(this.el).html(this.template({
-        model: JSON.stringify(this.model, null, 2)
+        model: JSON.stringify(this.model, null, 2),
+        title: this.model.get('_id').$oid
       }));
     };
     return DocumentView;
