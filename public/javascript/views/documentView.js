@@ -14,6 +14,9 @@
     }
     DocumentView.prototype.tagName = 'li';
     DocumentView.prototype.className = 'documentListItem';
+    DocumentView.prototype.events = {
+      'click a.treeIcon': 'toggleDocument'
+    };
     DocumentView.prototype.initialize = function() {
       return this.template = _.template($('#documentTemplate').html());
     };
@@ -22,6 +25,11 @@
         model: JSON.stringify(this.model, null, 2),
         title: this.model.get('_id').$oid
       }));
+    };
+    DocumentView.prototype.toggleDocument = function() {
+      var $pre;
+      $pre = this.$('pre.documentDetail');
+      return $pre.toggle();
     };
     return DocumentView;
   })();
