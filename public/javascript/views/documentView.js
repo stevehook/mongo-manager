@@ -21,10 +21,11 @@
       return this.template = _.template($('#documentTemplate').html());
     };
     DocumentView.prototype.render = function() {
-      return $(this.el).html(this.template({
+      $(this.el).html(this.template({
         model: JSON.stringify(this.model, null, 2),
         title: this.model.get('_id').$oid
       }));
+      return this;
     };
     DocumentView.prototype.toggleDocument = function() {
       var $icon, $pre;

@@ -10,6 +10,7 @@ class window.DocumentView extends Backbone.View
 
   render: ->
     $(@el).html @template({ model: JSON.stringify(@model, null, 2), title: @model.get('_id').$oid })
+    this
 
   toggleDocument: ->
     $pre = @$('pre.documentDetail')
