@@ -63,6 +63,11 @@ div.tabBar ul li a {
 
 ul.documentList {
   list-style-type: none;
+  padding-left: 20px;
+}
+
+ul.documentList li span {
+  margin-left: 20px;
 }
 
 ul#databaseList, ul.childCollection {
