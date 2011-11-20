@@ -138,6 +138,41 @@ a.expanded.dark:hover {
   background-position: -112px 0;
 }
 
+.paging a {
+  float: left;
+  height: 16px;
+  width: 16px;
+  padding: 1px;
+  margin: 2px;
+  background: url('/icons.png') no-repeat 0 0;
+  border: 1px solid #fff;
+}
+
+.paging a:hover {
+  background-color: #eee;
+  border: 1px solid #ccc;
+}
+
+.paging span {
+  float: left;
+}
+
+.paging a.first {
+  background-position: -128px 0;
+}
+
+.paging a.previous {
+  background-position: -144px 0;
+}
+
+.paging a.next {
+  background-position: -160px 0;
+}
+
+.paging a.last {
+  background-position: -176px 0;
+}
+
 h3 {
   font-size: 150%;
 }
