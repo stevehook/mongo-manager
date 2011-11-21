@@ -14,6 +14,12 @@
       PagingView.__super__.constructor.apply(this, arguments);
     }
     PagingView.prototype.className = 'paging';
+    PagingView.prototype.events = {
+      'click a.next': 'nextPage',
+      'click a.previous': 'previousPage',
+      'click a.first': 'firstPage',
+      'click a.last': 'lastPage'
+    };
     PagingView.prototype.initialize = function() {
       return this.template = _.template($('#pagingTemplate').html());
     };
@@ -22,6 +28,18 @@
         count: 'page 1 of 1'
       }));
       return this;
+    };
+    PagingView.prototype.nextPage = function() {
+      return console.log('TODO: next');
+    };
+    PagingView.prototype.previousPage = function() {
+      return console.log('TODO: previous');
+    };
+    PagingView.prototype.firstPage = function() {
+      return console.log('TODO: first');
+    };
+    PagingView.prototype.lastPage = function() {
+      return console.log('TODO: last');
     };
     return PagingView;
   })();
