@@ -1,12 +1,15 @@
 class window.PagedCollection extends Backbone.Collection
   initialize: (models, options) ->
-    @options = _.extend({ pageSize: 20, page: 1 }, options)
+    @pageDetails = _.extend({ pageSize: 20, page: 1 }, options)
 
   parse: (response) ->
     # Override the parse method to process the additional paging properties in the response
-    console.log response
-    response
+    @pageDetails.pageSize = response.pageSize
+    @pageDetails.page = response.page
+    @pageDetails.count = response.count
+    @pageDetails.pageCount = Math.ceil(response.count / response.pageSize)
+    response.models
 
   url: ->
-    "#{@baseUrl}/#{@options.pageSize}/#{@options.page}"
+    "#{@baseUrl}/#{@pageDetails.pageSize}/#{@pageDetails.page}"
 

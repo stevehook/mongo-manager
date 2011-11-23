@@ -13,17 +13,20 @@
       PagedCollection.__super__.constructor.apply(this, arguments);
     }
     PagedCollection.prototype.initialize = function(models, options) {
-      return this.options = _.extend({
+      return this.pageDetails = _.extend({
         pageSize: 20,
         page: 1
       }, options);
     };
     PagedCollection.prototype.parse = function(response) {
-      console.log(response);
-      return response;
+      this.pageDetails.pageSize = response.pageSize;
+      this.pageDetails.page = response.page;
+      this.pageDetails.count = response.count;
+      this.pageDetails.pageCount = Math.ceil(response.count / response.pageSize);
+      return response.models;
     };
     PagedCollection.prototype.url = function() {
-      return "" + this.baseUrl + "/" + this.options.pageSize + "/" + this.options.page;
+      return "" + this.baseUrl + "/" + this.pageDetails.pageSize + "/" + this.pageDetails.page;
     };
     return PagedCollection;
   })();
