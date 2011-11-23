@@ -1,14 +1,20 @@
 describe 'Paged Collections', ->
   beforeEach ->
     @server = sinon.fakeServer.create()
+    @server.respondWith "GET", "/pagedCollection/5/1",
+      [200, {"Content-Type": "application/json"},
+      '{"count": 37, "page": 1, "pageSize": 5, "models": [{"id": "1", "name": "object1"}, {"id": "2", "name": "object2"}, {"id": "3", "name": "object3"}, {"id": "4", "name": "object4"}, {"id": "5", "name": "object5"}]}']
+    @server.respondWith "GET", "/pagedCollection/5/2",
+      [200, {"Content-Type": "application/json"},
+      '{"count": 37, "page": 2, "pageSize": 5, "models": [{"id": "6", "name": "object6"}, {"id": "7", "name": "object7"}, {"id": "8", "name": "object8"}, {"id": "9", "name": "object9"}, {"id": "10", "name": "object10"}]}']
+    @server.respondWith "GET", "/pagedCollection/5/3",
+      [200, {"Content-Type": "application/json"},
+      '{"count": 37, "page": 3, "pageSize": 5, "models": [{"id": "11", "name": "object11"}, {"id": "12", "name": "object12"}, {"id": "13", "name": "object13"}, {"id": "14", "name": "object14"}, {"id": "15", "name": "object15"}]}']
     
   afterEach ->
     @server.restore()
 
   it 'fetches the first page', ->
-    @server.respondWith "GET", "/pagedCollection/5/1",
-      [200, {"Content-Type": "application/json"},
-      '{"count": 37, "page": 1, "pageSize": 5, "models": [{"id": "1", "name": "object1"}, {"id": "2", "name": "object2"}, {"id": "3", "name": "object3"}, {"id": "4", "name": "object4"}, {"id": "5", "name": "object5"}]}']
     collection = new PagedCollection({}, { pageSize: 5 })
     collection.baseUrl = '/pagedCollection'
     collection.fetch()
@@ -20,12 +26,6 @@ describe 'Paged Collections', ->
     expect(collection.pageDetails.page).toEqual 1
 
   it 'fetches the next page', ->
-    @server.respondWith "GET", "/pagedCollection/5/1",
-      [200, {"Content-Type": "application/json"},
-      '{"count": 37, "page": 1, "pageSize": 5, "models": [{"id": "1", "name": "object1"}, {"id": "2", "name": "object2"}, {"id": "3", "name": "object3"}, {"id": "4", "name": "object4"}, {"id": "5", "name": "object5"}]}']
-    @server.respondWith "GET", "/pagedCollection/5/2",
-      [200, {"Content-Type": "application/json"},
-      '{"count": 37, "page": 2, "pageSize": 5, "models": [{"id": "6", "name": "object6"}, {"id": "7", "name": "object7"}, {"id": "8", "name": "object8"}, {"id": "9", "name": "object9"}, {"id": "10", "name": "object10"}]}']
     collection = new PagedCollection({}, { pageSize: 5 })
     collection.baseUrl = '/pagedCollection'
     collection.fetch()
@@ -39,12 +39,6 @@ describe 'Paged Collections', ->
     expect(collection.pageDetails.page).toEqual 2
 
   it 'fetches the previous page', ->
-    @server.respondWith "GET", "/pagedCollection/5/3",
-      [200, {"Content-Type": "application/json"},
-      '{"count": 37, "page": 3, "pageSize": 5, "models": [{"id": "11", "name": "object11"}, {"id": "12", "name": "object12"}, {"id": "13", "name": "object13"}, {"id": "14", "name": "object14"}, {"id": "15", "name": "object15"}]}']
-    @server.respondWith "GET", "/pagedCollection/5/2",
-      [200, {"Content-Type": "application/json"},
-      '{"count": 37, "page": 2, "pageSize": 5, "models": [{"id": "6", "name": "object6"}, {"id": "7", "name": "object7"}, {"id": "8", "name": "object8"}, {"id": "9", "name": "object9"}, {"id": "10", "name": "object10"}]}']
     collection = new PagedCollection({}, { pageSize: 5, page: 3 })
     collection.baseUrl = '/pagedCollection'
     collection.fetch()
