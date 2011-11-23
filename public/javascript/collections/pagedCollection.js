@@ -28,6 +28,10 @@
     PagedCollection.prototype.url = function() {
       return "" + this.baseUrl + "/" + this.pageDetails.pageSize + "/" + this.pageDetails.page;
     };
+    PagedCollection.prototype.fetchNext = function() {
+      this.pageDetails.page += 1;
+      return this.fetch();
+    };
     return PagedCollection;
   })();
 }).call(this);

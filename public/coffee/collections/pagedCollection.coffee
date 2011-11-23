@@ -13,3 +13,7 @@ class window.PagedCollection extends Backbone.Collection
   url: ->
     "#{@baseUrl}/#{@pageDetails.pageSize}/#{@pageDetails.page}"
 
+  fetchNext: ->
+    @pageDetails.page += 1
+    @fetch()
+
