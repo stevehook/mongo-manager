@@ -17,3 +17,7 @@ class window.PagedCollection extends Backbone.Collection
     @pageDetails.page += 1
     @fetch()
 
+  fetchPrevious: ->
+    @pageDetails.page -= 1
+    @fetch()
+

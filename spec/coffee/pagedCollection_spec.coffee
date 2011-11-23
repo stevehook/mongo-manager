@@ -38,3 +38,22 @@ describe 'Paged Collections', ->
     expect(collection.pageDetails.pageSize).toEqual 5
     expect(collection.pageDetails.page).toEqual 2
 
+  it 'fetches the previous page', ->
+    @server.respondWith "GET", "/pagedCollection/5/3",
+      [200, {"Content-Type": "application/json"},
+      '{"count": 37, "page": 3, "pageSize": 5, "models": [{"id": "11", "name": "object11"}, {"id": "12", "name": "object12"}, {"id": "13", "name": "object13"}, {"id": "14", "name": "object14"}, {"id": "15", "name": "object15"}]}']
+    @server.respondWith "GET", "/pagedCollection/5/2",
+      [200, {"Content-Type": "application/json"},
+      '{"count": 37, "page": 2, "pageSize": 5, "models": [{"id": "6", "name": "object6"}, {"id": "7", "name": "object7"}, {"id": "8", "name": "object8"}, {"id": "9", "name": "object9"}, {"id": "10", "name": "object10"}]}']
+    collection = new PagedCollection({}, { pageSize: 5, page: 3 })
+    collection.baseUrl = '/pagedCollection'
+    collection.fetch()
+    @server.respond()
+    collection.fetchPrevious()
+    @server.respond()
+    expect(collection.length).toEqual 5
+    expect(collection.pageDetails.count).toEqual 37
+    expect(collection.pageDetails.pageCount).toEqual 8
+    expect(collection.pageDetails.pageSize).toEqual 5
+    expect(collection.pageDetails.page).toEqual 2
+

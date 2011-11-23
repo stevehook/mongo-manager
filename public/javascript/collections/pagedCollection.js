@@ -32,6 +32,10 @@
       this.pageDetails.page += 1;
       return this.fetch();
     };
+    PagedCollection.prototype.fetchPrevious = function() {
+      this.pageDetails.page -= 1;
+      return this.fetch();
+    };
     return PagedCollection;
   })();
 }).call(this);
