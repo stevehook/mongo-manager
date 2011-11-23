@@ -8,7 +8,7 @@
     return child;
   };
   window.Documents = (function() {
-    __extends(Documents, Backbone.Collection);
+    __extends(Documents, PagedCollection);
     function Documents() {
       Documents.__super__.constructor.apply(this, arguments);
     }

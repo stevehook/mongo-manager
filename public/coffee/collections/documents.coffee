@@ -1,4 +1,4 @@
-class window.Documents extends Backbone.Collection
+class window.Documents extends PagedCollection
   model: Document
 
   initialize: (documents, options) ->
