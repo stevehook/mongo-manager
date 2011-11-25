@@ -26,7 +26,9 @@
       return response.models;
     };
     PagedCollection.prototype.url = function() {
-      return "" + this.baseUrl + "/" + this.pageDetails.pageSize + "/" + this.pageDetails.page;
+      var baseUrl;
+      baseUrl = _.isFunction(this.baseUrl) ? this.baseUrl() : this.baseUrl;
+      return "" + baseUrl + "/" + this.pageDetails.pageSize + "/" + this.pageDetails.page;
     };
     PagedCollection.prototype.fetchNext = function() {
       this.pageDetails.page += 1;

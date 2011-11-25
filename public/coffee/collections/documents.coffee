@@ -3,7 +3,8 @@ class window.Documents extends PagedCollection
 
   initialize: (documents, options) ->
     @options = options
+    PagedCollection.prototype.initialize.call(this, documents, options)
 
-  url: ->
+  baseUrl: ->
     "/databases/#{@options.databaseName}/collections/#{@options.collectionName}/documents"
 

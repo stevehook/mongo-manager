@@ -14,9 +14,10 @@
     }
     Documents.prototype.model = Document;
     Documents.prototype.initialize = function(documents, options) {
-      return this.options = options;
+      this.options = options;
+      return PagedCollection.prototype.initialize.call(this, documents, options);
     };
-    Documents.prototype.url = function() {
+    Documents.prototype.baseUrl = function() {
       return "/databases/" + this.options.databaseName + "/collections/" + this.options.collectionName + "/documents";
     };
     return Documents;

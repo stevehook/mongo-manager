@@ -11,7 +11,8 @@ class window.PagedCollection extends Backbone.Collection
     response.models
 
   url: ->
-    "#{@baseUrl}/#{@pageDetails.pageSize}/#{@pageDetails.page}"
+    baseUrl = if _.isFunction(@baseUrl) then @baseUrl() else @baseUrl
+    "#{baseUrl}/#{@pageDetails.pageSize}/#{@pageDetails.page}"
 
   fetchNext: ->
     @pageDetails.page += 1
