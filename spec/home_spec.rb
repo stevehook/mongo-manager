@@ -107,18 +107,23 @@ describe "home" do
     before(:each) do
       @mongo_server_stub = stub('fake_mongo_server')
       MongoServer.stub(:new).and_return(@mongo_server_stub)
-      @mongo_server_stub.stub(:get_documents).and_return([{id: 24, title: 'test document'}])
+      documents = (1..10).collect { |n| { id: n, title: "test document #{n}" } }
+      @mongo_server_stub.stub(:get_documents).and_return(documents)
     end
 
     it "should return the correct content type" do
-      get '/databases/accounts/collections/customers/documents'
+      get '/databases/accounts/collections/customers/documents/10/1'
       last_response.headers["Content-Type"].should =~ /application\/json/
     end
 
     it "should return the correct data" do
-      get '/databases/accounts/collections/customers/documents'
-      last_response.body.should match /24/
-      last_response.body.should match /"test document"/
+      get '/databases/accounts/collections/customers/documents/10/1'
+      (1..10).each do |n|
+        last_response.body.should match n
+        last_response.body.should match "test document #{n}"
+      end
+      last_response.body.should_not match /11/
+      last_response.body.should_not match "test document 11"
     end
   end
 end
