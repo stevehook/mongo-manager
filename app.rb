@@ -72,9 +72,9 @@ class MongoServer
     db = connection.db(database_name)
     collection = db.collection(collection_name)
     params = {}
-    params[:skip] = skip if skip != 0
-    params[:limit] = limit if limit != 0
-    collection.find(params).to_a
+    params[:skip] = skip
+    params[:limit] = limit
+    collection.find(nil, params).to_a
   end
 end
 
@@ -106,7 +106,7 @@ class App < Sinatra::Base
       content_type 'application/json'
       @data
     else
-      # @databases = MongoServer.new.databases_and_collections(database_id).to_json
+      @databases = MongoServer.new.databases_and_collections(database_id).to_json
       haml :index
     end
   end
