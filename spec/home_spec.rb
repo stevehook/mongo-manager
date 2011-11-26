@@ -131,7 +131,17 @@ describe "home" do
         last_response.body.should_not match /test document 11/
       end
 
-      # TODO: Assert the json content
+      it "should return the count" do
+        last_response.body.should match /"count":24/
+      end
+
+      it "should return the page" do
+        last_response.body.should match /"page":1/
+      end
+
+      it "should return the pageSize" do
+        last_response.body.should match /"pageSize":10/
+      end
     end
 
     context "when page_size and page are not specified" do
