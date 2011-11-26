@@ -109,21 +109,22 @@ describe "home" do
       MongoServer.stub(:new).and_return(@mongo_server_stub)
       documents = (1..10).collect { |n| { id: n, title: "test document #{n}" } }
       @mongo_server_stub.stub(:get_documents).and_return(documents)
+      header 'X_REQUESTED_WITH', 'XMLHttpRequest'
     end
 
     it "should return the correct content type" do
-      get '/databases/accounts/collections/customers/documents/10/1'
+      get '/databases/accounts/collections/customers/documents/10/1' 
       last_response.headers["Content-Type"].should =~ /application\/json/
     end
 
     it "should return the correct data" do
       get '/databases/accounts/collections/customers/documents/10/1'
       (1..10).each do |n|
-        last_response.body.should match n
-        last_response.body.should match "test document #{n}"
+        last_response.body.should match /#{n}/
+        last_response.body.should match /test document #{n}/
       end
       last_response.body.should_not match /11/
-      last_response.body.should_not match "test document 11"
+      last_response.body.should_not match /test document 11/
     end
   end
 end

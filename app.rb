@@ -96,15 +96,15 @@ class App < Sinatra::Base
     haml :index
   end
 
-  get '/databases/:database_id/collections/:collection_id/documents' do |database_id, collection_id|
-    limit = request.params[:limit]
-    skip = request.params[:skip]
-    @databases = MongoServer.new.databases_and_collections(database_id).to_json
+  get '/databases/:database_id/collections/:collection_id/documents/:page_size/:page' do |database_id, collection_id, page_size, page|
+    limit = page_size.to_i
+    skip = (page.to_i - 1) * limit
     @data = MongoServer.new.get_documents(database_id, collection_id, skip, limit).to_json
     if request.xhr?
       content_type 'application/json'
       @data
     else
+      # @databases = MongoServer.new.databases_and_collections(database_id).to_json
       haml :index
     end
   end
