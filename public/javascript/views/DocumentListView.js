@@ -23,7 +23,6 @@
     };
     DocumentListView.prototype.render = function() {
       var $el, $ul, pagingView;
-      console.log('DocumentListView#render');
       $el = $(this.el);
       $el.html(this.template({
         name: this.collection.options.collectionName
@@ -33,7 +32,6 @@
         collection: this.collection
       });
       $el.append(pagingView.render().el);
-      console.log(this.collection);
       this.collection.each(__bind(function(doc) {
         var view;
         view = new DocumentView({

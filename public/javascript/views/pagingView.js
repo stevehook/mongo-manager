@@ -26,17 +26,17 @@
     PagingView.prototype.render = function() {
       var page, pageCount;
       page = this.options.collection.pageDetails.page;
-      pageCount = Math.ceil(this.options.collection.pageDetails.count / this.options.collection.pageDetails.pageSize);
+      pageCount = this.options.collection.pageDetails.pageCount;
       $(this.el).html(this.template({
         count: "page " + page + " of " + pageCount
       }));
       return this;
     };
     PagingView.prototype.nextPage = function() {
-      return console.log('TODO: next');
+      return this.options.collection.fetchNext();
     };
     PagingView.prototype.previousPage = function() {
-      return console.log('TODO: previous');
+      return this.options.collection.fetchPrevious();
     };
     PagingView.prototype.firstPage = function() {
       return console.log('TODO: first');

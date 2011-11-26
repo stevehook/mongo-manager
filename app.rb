@@ -112,7 +112,7 @@ class App < Sinatra::Base
     count = data.length < limit && skip == 0 ? data.length : mongo_server.get_count(database_id, collection_id)
     if request.xhr?
       content_type 'application/json'
-      { :count => count, :page => skip + 1, :pageSize => limit, :models => data }.to_json
+      { :count => count, :page => (skip/limit) + 1, :pageSize => limit, :models => data }.to_json
     else
       @data = data.to_json
       @databases = MongoServer.new.databases_and_collections(database_id).to_json
