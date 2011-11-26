@@ -96,9 +96,11 @@ class App < Sinatra::Base
     haml :index
   end
 
-  get '/databases/:database_id/collections/:collection_id/documents/:page_size/:page' do |database_id, collection_id, page_size, page|
-    limit = page_size.to_i
-    skip = (page.to_i - 1) * limit
+  get '/databases/:database_id/collections/:collection_id/documents/?:page_size?/?:page?' do |database_id, collection_id, page_size, page|
+    page_size = params[:page_size]
+    page = params[:page]
+    limit = page_size ? page_size.to_i : 20
+    skip = page ? (page.to_i - 1) * limit : 0
     @data = MongoServer.new.get_documents(database_id, collection_id, skip, limit).to_json
     if request.xhr?
       content_type 'application/json'
