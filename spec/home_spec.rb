@@ -114,6 +114,7 @@ describe "home" do
       before(:each) do
         documents = (1..10).collect { |n| { id: n, title: "test document #{n}" } }
         @mongo_server_mock.should_receive(:get_documents).with('accounts', 'customers', 0, 10).and_return(documents)
+        @mongo_server_mock.stub(:get_count).and_return(24)
         get '/databases/accounts/collections/customers/documents/10/1' 
       end
 
@@ -129,12 +130,15 @@ describe "home" do
         last_response.body.should_not match /11/
         last_response.body.should_not match /test document 11/
       end
+
+      # TODO: Assert the json content
     end
 
     context "when page_size and page are not specified" do
       before(:each) do
         documents = (1..20).collect { |n| { id: n, title: "test document #{n}" } }
         @mongo_server_mock.should_receive(:get_documents).with('accounts', 'customers', 0, 20).and_return(documents)
+        @mongo_server_mock.stub(:get_count).and_return(24)
         get '/databases/accounts/collections/customers/documents' 
       end
 

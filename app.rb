@@ -76,6 +76,12 @@ class MongoServer
     params[:limit] = limit
     collection.find(nil, params).to_a
   end
+
+  def get_count(database_name, collection_name)
+    db = connection.db(database_name)
+    collection = db.collection(collection_name)
+    collection.count
+  end
 end
 
 class App < Sinatra::Base
@@ -101,11 +107,14 @@ class App < Sinatra::Base
     page = params[:page]
     limit = page_size ? page_size.to_i : 20
     skip = page ? (page.to_i - 1) * limit : 0
-    @data = MongoServer.new.get_documents(database_id, collection_id, skip, limit).to_json
+    mongo_server = MongoServer.new
+    data = mongo_server.get_documents(database_id, collection_id, skip, limit)
+    count = data.length < limit && skip == 0 ? data.length : mongo_server.get_count(database_id, collection_id)
     if request.xhr?
       content_type 'application/json'
-      @data
+      { :count => count, :page => page, :pageSize => page_size, :models => data }.to_json
     else
+      @data = data.to_json
       @databases = MongoServer.new.databases_and_collections(database_id).to_json
       haml :index
     end
