@@ -24,8 +24,11 @@
       return this.template = _.template($('#pagingTemplate').html());
     };
     PagingView.prototype.render = function() {
+      var page, pageCount;
+      page = this.options.collection.pageDetails.page;
+      pageCount = Math.ceil(this.options.collection.pageDetails.count / this.options.collection.pageDetails.pageSize);
       $(this.el).html(this.template({
-        count: 'page 1 of 1'
+        count: "page " + page + " of " + pageCount
       }));
       return this;
     };

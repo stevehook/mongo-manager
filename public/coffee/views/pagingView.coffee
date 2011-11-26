@@ -11,7 +11,9 @@ class window.PagingView extends Backbone.View
     @template = _.template $('#pagingTemplate').html()
 
   render: =>
-    $(@el).html @template({ count: 'page 1 of 1' })
+    page = @options.collection.pageDetails.page
+    pageCount = Math.ceil(@options.collection.pageDetails.count / @options.collection.pageDetails.pageSize)
+    $(@el).html @template({ count: "page #{page} of #{pageCount}" })
     this
 
   nextPage: ->
