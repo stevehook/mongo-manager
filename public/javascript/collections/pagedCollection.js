@@ -31,12 +31,16 @@
       return "" + baseUrl + "/" + this.pageDetails.pageSize + "/" + this.pageDetails.page;
     };
     PagedCollection.prototype.fetchNext = function() {
-      this.pageDetails.page += 1;
-      return this.fetch();
+      if (this.pageDetails.page < this.pageDetails.pageCount) {
+        this.pageDetails.page += 1;
+        return this.fetch();
+      }
     };
     PagedCollection.prototype.fetchPrevious = function() {
-      this.pageDetails.page -= 1;
-      return this.fetch();
+      if (this.pageDetails.page > 1) {
+        this.pageDetails.page -= 1;
+        return this.fetch();
+      }
     };
     PagedCollection.prototype.fetchFirst = function() {
       this.pageDetails.page = 1;

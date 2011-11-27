@@ -15,12 +15,14 @@ class window.PagedCollection extends Backbone.Collection
     "#{baseUrl}/#{@pageDetails.pageSize}/#{@pageDetails.page}"
 
   fetchNext: ->
-    @pageDetails.page += 1
-    @fetch()
+    if @pageDetails.page < @pageDetails.pageCount
+      @pageDetails.page += 1
+      @fetch()
 
   fetchPrevious: ->
-    @pageDetails.page -= 1
-    @fetch()
+    if @pageDetails.page > 1
+      @pageDetails.page -= 1
+      @fetch()
 
   fetchFirst: ->
     @pageDetails.page = 1
