@@ -17,6 +17,9 @@ class window.DocumentListView extends Backbone.View
       view.render()
       $ul.append view.el
     $('#content').empty().append(@el)
+    @delegateEvents()
+    pagingView.delegateEvents()
+    this
 
   viewCollection: (e) =>
     url = "databases/#{@collection.options.databaseName}/collections/#{@collection.options.collectionName}"

@@ -40,7 +40,10 @@
         view.render();
         return $ul.append(view.el);
       }, this));
-      return $('#content').empty().append(this.el);
+      $('#content').empty().append(this.el);
+      this.delegateEvents();
+      pagingView.delegateEvents();
+      return this;
     };
     DocumentListView.prototype.viewCollection = function(e) {
       var url;
