@@ -38,6 +38,14 @@
       this.pageDetails.page -= 1;
       return this.fetch();
     };
+    PagedCollection.prototype.fetchFirst = function() {
+      this.pageDetails.page = 1;
+      return this.fetch();
+    };
+    PagedCollection.prototype.fetchLast = function() {
+      this.pageDetails.page = this.pageDetails.pageCount;
+      return this.fetch();
+    };
     return PagedCollection;
   })();
 }).call(this);

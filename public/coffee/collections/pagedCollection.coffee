@@ -22,3 +22,11 @@ class window.PagedCollection extends Backbone.Collection
     @pageDetails.page -= 1
     @fetch()
 
+  fetchFirst: ->
+    @pageDetails.page = 1
+    @fetch()
+
+  fetchLast: ->
+    @pageDetails.page = @pageDetails.pageCount
+    @fetch()
+

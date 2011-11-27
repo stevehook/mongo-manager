@@ -33,20 +33,20 @@
       return this;
     };
     PagingView.prototype.nextPage = function() {
-      console.log('previousPage');
       this.options.collection.fetchNext();
       return appRouter.navigate(this.options.collection.url());
     };
     PagingView.prototype.previousPage = function() {
-      console.log('previousPage');
       this.options.collection.fetchPrevious();
       return appRouter.navigate(this.options.collection.url());
     };
     PagingView.prototype.firstPage = function() {
-      return console.log('TODO: first');
+      this.options.collection.fetchFirst();
+      return appRouter.navigate(this.options.collection.url());
     };
     PagingView.prototype.lastPage = function() {
-      return console.log('TODO: last');
+      this.options.collection.fetchLast();
+      return appRouter.navigate(this.options.collection.url());
     };
     return PagingView;
   })();
