@@ -2,6 +2,7 @@ class window.AppRouter extends Backbone.Router
     routes:
       "": "clear",
       "databases/:databaseName/collections/:collectionName/documents": "showDocuments",
+      "databases/:databaseName/collections/:collectionName/documents/*paging": "showDocuments",
       "databases/:databaseName/collections/:collectionName": "showCollection",
       "databases/:name": "showDatabase"
 
@@ -23,8 +24,12 @@ class window.AppRouter extends Backbone.Router
           collectionDetailView = new CollectionDetailView({ databaseModel: database, model: collection })
           collectionDetailView.render()
 
-    showDocuments: (databaseName, collectionName) =>
+    showDocuments: (databaseName, collectionName, paging) =>
       collection = new Documents({}, { databaseName: databaseName, collectionName: collectionName })
+      if paging
+        pagingParams = paging.split '/'
+        collection.pageDetails.pageSize = pagingParams[0] if pagingParams.length > 0
+        collection.pageDetails.page = pagingParams[1] if pagingParams.length > 1
       documentView = new DocumentListView({ collection: collection, databaseName: databaseName, collectionName: collectionName })
       collection.fetch()
 

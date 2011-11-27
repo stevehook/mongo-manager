@@ -19,6 +19,7 @@
     AppRouter.prototype.routes = {
       "": "clear",
       "databases/:databaseName/collections/:collectionName/documents": "showDocuments",
+      "databases/:databaseName/collections/:collectionName/documents/*paging": "showDocuments",
       "databases/:databaseName/collections/:collectionName": "showCollection",
       "databases/:name": "showDatabase"
     };
@@ -51,12 +52,21 @@
         }
       }
     };
-    AppRouter.prototype.showDocuments = function(databaseName, collectionName) {
-      var collection, documentView;
+    AppRouter.prototype.showDocuments = function(databaseName, collectionName, paging) {
+      var collection, documentView, pagingParams;
       collection = new Documents({}, {
         databaseName: databaseName,
         collectionName: collectionName
       });
+      if (paging) {
+        pagingParams = paging.split('/');
+        if (pagingParams.length > 0) {
+          collection.pageDetails.pageSize = pagingParams[0];
+        }
+        if (pagingParams.length > 1) {
+          collection.pageDetails.page = pagingParams[1];
+        }
+      }
       documentView = new DocumentListView({
         collection: collection,
         databaseName: databaseName,

@@ -17,10 +17,12 @@ class window.PagingView extends Backbone.View
     this
 
   nextPage: ->
+    console.log 'previousPage'
     @options.collection.fetchNext()
     appRouter.navigate @options.collection.url()
 
   previousPage: ->
+    console.log 'previousPage'
     @options.collection.fetchPrevious()
     appRouter.navigate @options.collection.url()
 

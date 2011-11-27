@@ -33,10 +33,12 @@
       return this;
     };
     PagingView.prototype.nextPage = function() {
+      console.log('previousPage');
       this.options.collection.fetchNext();
       return appRouter.navigate(this.options.collection.url());
     };
     PagingView.prototype.previousPage = function() {
+      console.log('previousPage');
       this.options.collection.fetchPrevious();
       return appRouter.navigate(this.options.collection.url());
     };
