@@ -18,9 +18,11 @@ class window.PagingView extends Backbone.View
 
   nextPage: ->
     @options.collection.fetchNext()
+    appRouter.navigate @options.collection.url()
 
   previousPage: ->
     @options.collection.fetchPrevious()
+    appRouter.navigate @options.collection.url()
 
   firstPage: ->
     console.log 'TODO: first'
