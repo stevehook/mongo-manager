@@ -1,5 +1,6 @@
 (function() {
   describe('Paged Collections', function() {
+    var setupCollection, verifyPageDetails;
     beforeEach(function() {
       this.server = sinon.fakeServer.create();
       this.server.respondWith("GET", "/pagedCollection/5/1", [
@@ -26,120 +27,76 @@
     afterEach(function() {
       return this.server.restore();
     });
-    it('fetches the first page', function() {
+    setupCollection = function(page) {
       var collection;
       collection = new PagedCollection({}, {
-        pageSize: 5
+        pageSize: 5,
+        page: page
       });
       collection.baseUrl = '/pagedCollection';
       collection.fetch();
+      return collection;
+    };
+    verifyPageDetails = function(collection, length, count, pageCount, pageSize, page) {
+      expect(collection.length).toEqual(length);
+      expect(collection.pageDetails.count).toEqual(count);
+      expect(collection.pageDetails.pageCount).toEqual(pageCount);
+      expect(collection.pageDetails.pageSize).toEqual(pageSize);
+      return expect(collection.pageDetails.page).toEqual(page);
+    };
+    it('fetches the first page', function() {
+      var collection;
+      collection = setupCollection(1);
       this.server.respond();
-      expect(collection.length).toEqual(5);
-      expect(collection.pageDetails.count).toEqual(37);
-      expect(collection.pageDetails.pageCount).toEqual(8);
-      expect(collection.pageDetails.pageSize).toEqual(5);
-      return expect(collection.pageDetails.page).toEqual(1);
+      return verifyPageDetails(collection, 5, 37, 8, 5, 1);
     });
     it('fetches the next page', function() {
       var collection;
-      collection = new PagedCollection({}, {
-        pageSize: 5
-      });
-      collection.baseUrl = '/pagedCollection';
-      collection.fetch();
+      collection = setupCollection(1);
       this.server.respond();
       collection.fetchNext();
       this.server.respond();
-      expect(collection.length).toEqual(5);
-      expect(collection.pageDetails.count).toEqual(37);
-      expect(collection.pageDetails.pageCount).toEqual(8);
-      expect(collection.pageDetails.pageSize).toEqual(5);
-      return expect(collection.pageDetails.page).toEqual(2);
+      return verifyPageDetails(collection, 5, 37, 8, 5, 2);
     });
     it('fetches the previous page', function() {
       var collection;
-      collection = new PagedCollection({}, {
-        pageSize: 5,
-        page: 3
-      });
-      collection.baseUrl = '/pagedCollection';
-      collection.fetch();
+      collection = setupCollection(3);
       this.server.respond();
       collection.fetchPrevious();
       this.server.respond();
-      expect(collection.length).toEqual(5);
-      expect(collection.pageDetails.count).toEqual(37);
-      expect(collection.pageDetails.pageCount).toEqual(8);
-      expect(collection.pageDetails.pageSize).toEqual(5);
-      return expect(collection.pageDetails.page).toEqual(2);
+      return verifyPageDetails(collection, 5, 37, 8, 5, 2);
     });
     it('does not attempt to fetch the previous page when on first page already', function() {
       var collection;
-      collection = new PagedCollection({}, {
-        pageSize: 5,
-        page: 1
-      });
-      collection.baseUrl = '/pagedCollection';
-      collection.fetch();
+      collection = setupCollection(1);
       this.server.respond();
       collection.fetchPrevious();
       this.server.respond();
-      expect(collection.length).toEqual(5);
-      expect(collection.pageDetails.count).toEqual(37);
-      expect(collection.pageDetails.pageCount).toEqual(8);
-      expect(collection.pageDetails.pageSize).toEqual(5);
-      return expect(collection.pageDetails.page).toEqual(1);
+      return verifyPageDetails(collection, 5, 37, 8, 5, 1);
     });
     it('does not attempt to fetch the next page when on last page already', function() {
       var collection;
-      collection = new PagedCollection({}, {
-        pageSize: 5,
-        page: 8
-      });
-      collection.baseUrl = '/pagedCollection';
-      collection.fetch();
+      collection = setupCollection(8);
       this.server.respond();
       collection.fetchNext();
       this.server.respond();
-      expect(collection.length).toEqual(2);
-      expect(collection.pageDetails.count).toEqual(37);
-      expect(collection.pageDetails.pageCount).toEqual(8);
-      expect(collection.pageDetails.pageSize).toEqual(5);
-      return expect(collection.pageDetails.page).toEqual(8);
+      return verifyPageDetails(collection, 2, 37, 8, 5, 8);
     });
     it('fetches the last page', function() {
       var collection;
-      collection = new PagedCollection({}, {
-        pageSize: 5,
-        page: 1
-      });
-      collection.baseUrl = '/pagedCollection';
-      collection.fetch();
+      collection = setupCollection(1);
       this.server.respond();
       collection.fetchLast();
       this.server.respond();
-      expect(collection.length).toEqual(2);
-      expect(collection.pageDetails.count).toEqual(37);
-      expect(collection.pageDetails.pageCount).toEqual(8);
-      expect(collection.pageDetails.pageSize).toEqual(5);
-      return expect(collection.pageDetails.page).toEqual(8);
+      return verifyPageDetails(collection, 2, 37, 8, 5, 8);
     });
     return it('fetches the first page', function() {
       var collection;
-      collection = new PagedCollection({}, {
-        pageSize: 5,
-        page: 3
-      });
-      collection.baseUrl = '/pagedCollection';
-      collection.fetch();
+      collection = setupCollection(3);
       this.server.respond();
       collection.fetchFirst();
       this.server.respond();
-      expect(collection.length).toEqual(5);
-      expect(collection.pageDetails.count).toEqual(37);
-      expect(collection.pageDetails.pageCount).toEqual(8);
-      expect(collection.pageDetails.pageSize).toEqual(5);
-      return expect(collection.pageDetails.page).toEqual(1);
+      return verifyPageDetails(collection, 5, 37, 8, 5, 1);
     });
   });
 }).call(this);
